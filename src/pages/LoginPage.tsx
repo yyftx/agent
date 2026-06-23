@@ -32,7 +32,7 @@ export default function LoginPage() {
           </div>
           <h1 className="text-2xl font-bold text-foreground">暑期社会实践备战系统</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            基于张豪芬老师6.22培训内容构建
+            基于老师6.22培训内容构建
           </p>
         </div>
 

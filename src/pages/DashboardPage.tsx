@@ -47,7 +47,7 @@ export default function DashboardPage() {
           <div className="flex-1">
             <h1 className="text-xl font-bold">暑期社会实践备战系统</h1>
             <p className="mt-1 text-sm text-muted-foreground">
-              基于张豪芬老师 2026.6.22 培训内容 · 两条赛道 · 四步法 · 六步法 · 全流程覆盖
+              基于老师 2026.6.22 培训内容 · 两条赛道 · 四步法 · 六步法 · 全流程覆盖
             </p>
           </div>
         </div>
