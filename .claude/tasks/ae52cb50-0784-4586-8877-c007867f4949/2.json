@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "清理临时文件和系统垃圾",
+  "description": "清理 Temp 目录、回收站、浏览器缓存等",
+  "activeForm": "清理临时文件",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

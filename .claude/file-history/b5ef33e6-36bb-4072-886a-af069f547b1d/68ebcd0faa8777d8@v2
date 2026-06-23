@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 980">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'JetBrains Mono', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+  </style>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrow-cyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrow-emerald" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+    </marker>
+    <marker id="arrow-amber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fbbf24"/>
+    </marker>
+    <marker id="arrow-violet" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#a78bfa"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c"/>
+    </marker>
+    <marker id="arrow-rose" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fb7185"/>
+    </marker>
+    <marker id="arrow-slate" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#0f172a"/>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="750" y="36" fill="#f8fafc" font-size="18" font-weight="700" text-anchor="middle">智慧教室 — 多智能体协同流程图</text>
+  <text x="750" y="56" fill="#94a3b8" font-size="9" text-anchor="middle">课前准备 → 课中互动 → 课后巩固 → 周期评价（闭环）</text>
+
+  <!-- ====== SWIM LANE BOUNDARIES ====== -->
+  <!-- Lane 1: 课前准备 -->
+  <rect x="15" y="70" width="355" height="870" rx="12" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="8,4"/>
+  <rect x="15" y="70" width="355" height="28" rx="12" fill="#22d3ee" fill-opacity="0.15"/>
+  <text x="192" y="88" fill="#22d3ee" font-size="11" font-weight="700" text-anchor="middle">📋 阶段一：课前准备</text>
+  <text x="192" y="110" fill="#64748b" font-size="8" text-anchor="middle">A1 课程规划智能体主导</text>
+
+  <!-- Lane 2: 课中互动 -->
+  <rect x="385" y="70" width="355" height="870" rx="12" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="8,4"/>
+  <rect x="385" y="70" width="355" height="28" rx="12" fill="#34d399" fill-opacity="0.15"/>
+  <text x="562" y="88" fill="#34d399" font-size="11" font-weight="700" text-anchor="middle">💬 阶段二：课中互动</text>
+  <text x="562" y="110" fill="#64748b" font-size="8" text-anchor="middle">A2 教学互动智能体主导</text>
+
+  <!-- Lane 3: 课后巩固 -->
+  <rect x="755" y="70" width="355" height="870" rx="12" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="8,4"/>
+  <rect x="755" y="70" width="355" height="28" rx="12" fill="#fbbf24" fill-opacity="0.15"/>
+  <text x="932" y="88" fill="#fbbf24" font-size="11" font-weight="700" text-anchor="middle">✍️ 阶段三：课后巩固</text>
+  <text x="932" y="110" fill="#64748b" font-size="8" text-anchor="middle">A3 作业批改 + A4 学习诊断</text>
+
+  <!-- Lane 4: 周期评价 -->
+  <rect x="1125" y="70" width="360" height="870" rx="12" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="8,4"/>
+  <rect x="1125" y="70" width="360" height="28" rx="12" fill="#a78bfa" fill-opacity="0.15"/>
+  <text x="1305" y="88" fill="#a78bfa" font-size="11" font-weight="700" text-anchor="middle">📊 阶段四：周期评价</text>
+  <text x="1305" y="110" fill="#64748b" font-size="8" text-anchor="middle">A5 综合评价智能体主导</text>
+
+  <!-- ====== LANE 1: 课前准备 ====== -->
+  <!-- Step 1: A4诊断报告输入 -->
+  <rect x="65" y="140" width="255" height="65" rx="6" fill="#0f172a"/>
+  <rect x="65" y="140" width="255" height="65" rx="6" fill="rgba(76,29,149,0.3)" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="192" y="163" fill="#f8fafc" font-size="11" font-weight="600" text-anchor="middle">A4 提供诊断报告</text>
+  <text x="192" y="180" fill="#94a3b8" font-size="8" text-anchor="middle">薄弱点热力图 + 个性化建议</text>
+  <text x="192" y="194" fill="#a78bfa" font-size="8" text-anchor="middle">🔍 学习诊断智能体</text>
+
+  <!-- Arrow down -->
+  <line x1="192" y1="210" x2="192" y2="255" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+
+  <!-- Step 2: A1制定计划 -->
+  <rect x="55" y="260" width="275" height="80" rx="6" fill="#0f172a"/>
+  <rect x="55" y="260" width="275" height="80" rx="6" fill="rgba(8,51,68,0.5)" stroke="#22d3ee" stroke-width="2"/>
+  <text x="192" y="283" fill="#22d3ee" font-size="12" font-weight="700" text-anchor="middle">A1 制定分层教学计划</text>
+  <text x="192" y="300" fill="#94a3b8" font-size="8" text-anchor="middle">• 拆解课程目标 → 教学单元</text>
+  <text x="192" y="314" fill="#94a3b8" font-size="8" text-anchor="middle">• 标注重点/难点/共性问题</text>
+  <text x="192" y="328" fill="#94a3b8" font-size="8" text-anchor="middle">• 准备分层任务（基础/提升/拓展）</text>
+
+  <!-- Arrow down -->
+  <line x1="192" y1="345" x2="192" y2="390" stroke="#22d3ee" stroke-width="1.5" marker-end="url(#arrow-cyan)"/>
+
+  <!-- Step 3: 同步A2 -->
+  <rect x="65" y="395" width="255" height="65" rx="6" fill="#0f172a"/>
+  <rect x="65" y="395" width="255" height="65" rx="6" fill="rgba(6,78,59,0.3)" stroke="#34d399" stroke-width="1.5"/>
+  <text x="192" y="418" fill="#f8fafc" font-size="11" font-weight="600" text-anchor="middle">同步教学计划 → A2</text>
+  <text x="192" y="435" fill="#94a3b8" font-size="8" text-anchor="middle">预生成课堂引导问题</text>
+  <text x="192" y="449" fill="#94a3b8" font-size="8" text-anchor="middle">+ 互动方案</text>
+
+  <!-- Arrow to lane 2 -->
+  <line x1="320" y1="430" x2="380" y2="430" stroke="#34d399" stroke-width="2" marker-end="url(#arrow-emerald)"/>
+  <text x="350" y="422" fill="#34d399" font-size="7" text-anchor="middle">同步</text>
+
+  <!-- ====== LANE 2: 课中互动 ====== -->
+  <!-- Step 4: A2课堂互动 -->
+  <rect x="435" y="140" width="255" height="80" rx="6" fill="#0f172a"/>
+  <rect x="435" y="140" width="255" height="80" rx="6" fill="rgba(6,78,59,0.5)" stroke="#34d399" stroke-width="2"/>
+  <text x="562" y="163" fill="#34d399" font-size="12" font-weight="700" text-anchor="middle">A2 主导课堂互动</text>
+  <text x="562" y="180" fill="#94a3b8" font-size="8" text-anchor="middle">• NLP 理解学生提问</text>
+  <text x="562" y="194" fill="#94a3b8" font-size="8" text-anchor="middle">• 情感识别（困惑/兴奋）</text>
+  <text x="562" y="208" fill="#94a3b8" font-size="8" text-anchor="middle">• 记录互动数据到 A4 数据池</text>
+
+  <!-- Arrow down -->
+  <line x1="562" y1="225" x2="562" y2="270" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+
+  <!-- Step 5: 决策菱形 -->
+  <g transform="translate(562, 305)">
+    <polygon points="0,-35 60,0 0,35 -60,0" fill="#0f172a"/>
+    <polygon points="0,-35 60,0 0,35 -60,0" fill="rgba(120,53,15,0.4)" stroke="#fbbf24" stroke-width="1.5"/>
+    <text y="5" fill="#fbbf24" font-size="9" font-weight="600" text-anchor="middle">集体困惑？</text>
+  </g>
+
+  <!-- Yes: back to A1 -->
+  <line x1="502" y1="305" x2="370" y2="305" stroke="#fb7185" stroke-width="1.2" stroke-dasharray="6,3" marker-end="url(#arrow-rose)"/>
+  <text x="440" y="298" fill="#fb7185" font-size="7" text-anchor="middle">是 → 通知A1调整</text>
+
+  <!-- No: continue down -->
+  <line x1="562" y1="340" x2="562" y2="385" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrow-emerald)"/>
+  <text x="574" y="365" fill="#34d399" font-size="7" text-anchor="middle">否</text>
+
+  <!-- Step 6: A3实时批改 -->
+  <rect x="435" y="390" width="255" height="65" rx="6" fill="#0f172a"/>
+  <rect x="435" y="390" width="255" height="65" rx="6" fill="rgba(251,146,60,0.3)" stroke="#fb923c" stroke-width="1.5"/>
+  <text x="562" y="413" fill="#f8fafc" font-size="11" font-weight="600" text-anchor="middle">调用 A3 实时批改</text>
+  <text x="562" y="430" fill="#94a3b8" font-size="8" text-anchor="middle">课堂练习即时反馈</text>
+  <text x="562" y="444" fill="#94a3b8" font-size="8" text-anchor="middle">✍️ 作业批改智能体</text>
+
+  <!-- Arrow to lane 3 -->
+  <line x1="690" y1="430" x2="750" y2="430" stroke="#fb923c" stroke-width="2" marker-end="url(#arrow-orange)"/>
+  <text x="720" y="422" fill="#fb923c" font-size="7" text-anchor="middle">推送</text>
+
+  <!-- ====== LANE 3: 课后巩固 ====== -->
+  <!-- Step 7: A3批改作业 -->
+  <rect x="805" y="140" width="255" height="80" rx="6" fill="#0f172a"/>
+  <rect x="805" y="140" width="255" height="80" rx="6" fill="rgba(251,146,60,0.5)" stroke="#fb923c" stroke-width="2"/>
+  <text x="932" y="163" fill="#fb923c" font-size="12" font-weight="700" text-anchor="middle">A3 作业批改</text>
+  <text x="932" y="180" fill="#94a3b8" font-size="8" text-anchor="middle">• OCR识别 + 步骤追踪</text>
+  <text x="932" y="194" fill="#94a3b8" font-size="8" text-anchor="middle">• 错因标签 + 个性化评语</text>
+  <text x="932" y="208" fill="#94a3b8" font-size="8" text-anchor="middle">• 推荐针对性练习</text>
+
+  <!-- Arrow down -->
+  <line x1="932" y1="225" x2="932" y2="270" stroke="#fb923c" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+
+  <!-- Step 8: A4诊断 -->
+  <rect x="805" y="275" width="255" height="80" rx="6" fill="#0f172a"/>
+  <rect x="805" y="275" width="255" height="80" rx="6" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="2"/>
+  <text x="932" y="298" fill="#a78bfa" font-size="12" font-weight="700" text-anchor="middle">A4 学习诊断</text>
+  <text x="932" y="315" fill="#94a3b8" font-size="8" text-anchor="middle">• DKT知识追踪建模</text>
+  <text x="932" y="329" fill="#94a3b8" font-size="8" text-anchor="middle">• 薄弱点定位 + 遗忘预测</text>
+  <text x="932" y="343" fill="#94a3b8" font-size="8" text-anchor="middle">• 个性化练习推荐</text>
+
+  <!-- Arrow down -->
+  <line x1="932" y1="360" x2="932" y2="405" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+
+  <!-- Step 9: 反馈A1 (loop-back) -->
+  <rect x="805" y="410" width="255" height="55" rx="6" fill="#0f172a"/>
+  <rect x="805" y="410" width="255" height="55" rx="6" fill="rgba(8,51,68,0.3)" stroke="#22d3ee" stroke-width="1.5"/>
+  <text x="932" y="433" fill="#f8fafc" font-size="10" font-weight="600" text-anchor="middle">反馈诊断结果 → A1</text>
+  <text x="932" y="450" fill="#94a3b8" font-size="8" text-anchor="middle">A1 据此调整下次课教学计划</text>
+
+  <!-- Loop back arrow from Lane 3 to Lane 1 -->
+  <path d="M 805 438 L 400 438 Q 380 438 380 460 L 380 800 Q 380 820 400 820 L 900 820 Q 920 820 920 800 L 920 470 L 320 470" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3" marker-end="url(#arrow-cyan)"/>
+  <text x="550" y="840" fill="#22d3ee" font-size="9" font-weight="600" text-anchor="middle">🔄 闭环：A4 → A1 动态调整下次教学计划</text>
+
+  <!-- ====== LANE 4: 周期评价 ====== -->
+  <!-- Arrows from A1-A4 into A5 -->
+  <line x1="1120" y1="175" x2="1120" y2="175" stroke="#a78bfa" stroke-width="1" marker-end="url(#arrow-violet)"/>
+  <text x="1108" y="168" fill="#64748b" font-size="7" text-anchor="end">A1数据</text>
+
+  <!-- Step 10: A5汇聚 -->
+  <rect x="1175" y="140" width="260" height="100" rx="6" fill="#0f172a"/>
+  <rect x="1175" y="140" width="260" height="100" rx="6" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="3"/>
+  <text x="1305" y="165" fill="#a78bfa" font-size="13" font-weight="700" text-anchor="middle">⚡ A5 综合评价智能体</text>
+  <text x="1305" y="185" fill="#94a3b8" font-size="8" text-anchor="middle">汇聚 A1~A4 全部输出</text>
+  <text x="1305" y="200" fill="#94a3b8" font-size="8" text-anchor="middle">多维度数据融合分析</text>
+  <text x="1305" y="215" fill="#94a3b8" font-size="8" text-anchor="middle">生成学生画像 + 学习趋势</text>
+  <text x="1305" y="230" fill="#94a3b8" font-size="8" text-anchor="middle">🧠 综合评价智能体</text>
+
+  <!-- Data flow arrows into A5 -->
+  <path d="M 370 440 L 390 440 L 390 180 L 370 180" fill="none" stroke="#a78bfa" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <path d="M 690 440 L 750 440 L 750 180" fill="none" stroke="#a78bfa" stroke-width="0.8" stroke-dasharray="4,3"/>
+  <path d="M 1060 440 L 1120 440 L 1120 200 L 1170 200" fill="none" stroke="#a78bfa" stroke-width="0.8" stroke-dasharray="4,3"/>
+
+  <!-- Arrow down -->
+  <line x1="1305" y1="245" x2="1305" y2="290" stroke="#a78bfa" stroke-width="1.5" marker-end="url(#arrow-violet)"/>
+
+  <!-- Output: Reports -->
+  <rect x="1195" y="295" width="220" height="65" rx="6" fill="#0f172a"/>
+  <rect x="1195" y="295" width="220" height="65" rx="6" fill="rgba(59,130,246,0.3)" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="1305" y="318" fill="#60a5fa" font-size="10" font-weight="600" text-anchor="middle">输出多维报告</text>
+  <text x="1305" y="335" fill="#94a3b8" font-size="8" text-anchor="middle">👨‍🏫 教师版 · 👨‍👩‍👧 家长版</text>
+  <text x="1305" y="350" fill="#94a3b8" font-size="8" text-anchor="middle">提前2周预警掉队学生</text>
+
+  <!-- Feedback arrow to Lane 1 -->
+  <path d="M 1195 330 L 1140 330 L 1140 800 Q 1140 820 1120 820 L 600 820 Q 580 820 580 800 L 580 470 L 350 470" fill="none" stroke="#60a5fa" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="800" y="840" fill="#60a5fa" font-size="9" font-weight="600" text-anchor="middle">📈 闭环：A5 趋势数据 → A1 下一周期优化起点</text>
+
+  <!-- ====== AGENT LEGEND ====== -->
+  <rect x="30" y="895" width="1440" height="75" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="50" y="918" fill="#94a3b8" font-size="9" font-weight="600">智能体图例：</text>
+
+  <rect x="160" y="906" width="14" height="14" rx="3" fill="rgba(8,51,68,0.6)" stroke="#22d3ee" stroke-width="1"/>
+  <text x="180" y="917" fill="#22d3ee" font-size="8">A1 课程规划</text>
+
+  <rect x="290" y="906" width="14" height="14" rx="3" fill="rgba(6,78,59,0.6)" stroke="#34d399" stroke-width="1"/>
+  <text x="310" y="917" fill="#34d399" font-size="8">A2 教学互动</text>
+
+  <rect x="420" y="906" width="14" height="14" rx="3" fill="rgba(251,146,60,0.5)" stroke="#fb923c" stroke-width="1"/>
+  <text x="440" y="917" fill="#fb923c" font-size="8">A3 作业批改</text>
+
+  <rect x="550" y="906" width="14" height="14" rx="3" fill="rgba(76,29,149,0.5)" stroke="#a78bfa" stroke-width="1"/>
+  <text x="570" y="917" fill="#a78bfa" font-size="8">A4 学习诊断</text>
+
+  <rect x="680" y="906" width="14" height="14" rx="3" fill="rgba(76,29,149,0.7)" stroke="#a78bfa" stroke-width="2"/>
+  <text x="700" y="917" fill="#a78bfa" font-size="8">A5 综合评价</text>
+
+  <line x1="830" y1="913" x2="880" y2="913" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="888" y="917" fill="#94a3b8" font-size="8">数据流</text>
+
+  <line x1="980" y1="913" x2="1030" y2="913" stroke="#fb7185" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="1038" y="917" fill="#94a3b8" font-size="8">异常通知</text>
+
+  <text x="460" y="958" fill="#64748b" font-size="8" text-anchor="middle">核心闭环：A4 诊断 → A1 调计划 → A2 互动教学 → A3 批改 → A4 再诊断 → A5 周期评价 → A1 下一轮优化</text>
+</svg>

@@ -1,0 +1,124 @@
+from docx import Document
+
+doc = Document(r"C:\Users\ASUS\OneDrive\Desktop\5413投标.docx")
+
+print("=== 内容问题检查 ===")
+# 1. Check for blank/missing fields
+for ti, table in enumerate(doc.tables):
+    blank_count = 0
+    for row in table.rows:
+        for cell in row.cells:
+            if cell.text.strip() == "________":
+                blank_count += 1
+    if blank_count > 0:
+        print(f"表格{ti+1}: {blank_count} 个填写为'________'的空白字段")
+
+# 2. Key content checks
+text = "\n".join([p.text for p in doc.paragraphs])
+print()
+print("=== 关键信息检查 ===")
+checks = [
+    ("投标保证金", "应说明金额和缴纳方式"),
+    ("履约保证金", "中标后需缴纳"),
+    ("付款方式", "如:按进度付款/验收后付款"),
+    ("工期", "必须明确"),
+    ("违约责任", "合同必备条款"),
+    ("营业执照", "资质文件"),
+    ("招标编号", "项目标识"),
+]
+for keyword, note in checks:
+    if keyword not in text:
+        print(f"  ❌ 缺少: {keyword} ({note})")
+    else:
+        print(f"  ✅ 包含: {keyword}")
+
+# 3. Technical accuracy
+print()
+if "100Mbps" in text and "超五类" in text:
+    print("❌ 技术错误: 超五类网线标注'100Mbps'传输——超五类(Cat5e)标准支持1000Mbps(千兆)，不是100Mbps！应改为1000Mbps或1Gbps")
+
+# 4. Check 报价完整性
+print()
+print("=== 报价表检查 ===")
+t = doc.tables[3]
+empty_price = []
+for i, row in enumerate(t.rows[1:], 1):
+    price = row.cells[5].text.strip()
+    total = row.cells[6].text.strip()
+    if not price or not total:
+        name = row.cells[1].text.strip()
+        empty_price.append(f"  #{i} {name}: 单价/合价为空")
+if empty_price:
+    print(f"  ❌ {len(empty_price)}/{len(t.rows)-1} 项单价/合价为空！")
+    for e in empty_price[:10]:
+        print(e)
+    if len(empty_price) > 10:
+        print(f"  ... 共{len(empty_price)}项")
+
+# 5. 业绩表检查
+print()
+print("=== 业绩表检查 ===")
+t = doc.tables[0]
+for i, row in enumerate(t.rows[1:], 1):
+    issues = []
+    for j, cell in enumerate(row.cells):
+        if cell.text.strip() == "________":
+            issues.append(t.rows[0].cells[j].text)
+    if issues:
+        print(f"  业绩#{i}: 缺少 {', '.join(issues)}")
+
+# 6. 人员表检查
+print()
+print("=== 人员配置检查 ===")
+t = doc.tables[2]
+for i, row in enumerate(t.rows[1:], 1):
+    name = row.cells[1].text.strip()
+    phone = row.cells[3].text.strip()
+    if name == "________" or phone == "________":
+        role = row.cells[0].text.strip()
+        print(f"  {role}: 姓名/联系方式未填写")
+
+# 7. 文档格式检查
+print()
+print("=== 格式问题 ===")
+# Check font consistency
+from collections import Counter
+fonts = Counter()
+for p in doc.paragraphs:
+    for r in p.runs:
+        if r.font.name:
+            fonts[r.font.name] += 1
+print(f"  文档字体使用情况: {dict(fonts)}")
+if len(fonts) > 3:
+    print(f"  ⚠️ 字体种类较多({len(fonts)}种)，建议统一为宋体正文+黑体标题")
+
+# Check sizes
+sizes = Counter()
+for p in doc.paragraphs:
+    for r in p.runs:
+        if r.font.size:
+            sizes[str(r.font.size)] += 1
+print(f"  字号分布: {dict(sizes)}")
+
+# Summary
+print()
+print("=" * 50)
+print("📋 问题汇总:")
+print("=" * 50)
+total_issues = 0
+if "100Mbps" in text and "超五类" in text:
+    print("  1. [技术错误] 超五类网线速率标注错误(100Mbps->1000Mbps)")
+    total_issues += 1
+if any("________" in cell.text for t in doc.tables for row in t.rows for cell in row.cells):
+    print("  2. [内容不完整] 多个表格含大量空白占位符'________'")
+    total_issues += 1
+if any(not row.cells[5].text.strip() for row in doc.tables[3].rows[1:]):
+    print("  3. [致命缺陷] 报价单单价/合价未填写——这可能导致废标！")
+    total_issues += 1
+if "投标保证金" not in text:
+    print("  4. [内容缺失] 未提及投标保证金")
+    total_issues += 1
+if "招标编号" not in text:
+    print("  5. [内容缺失] 未标注招标编号/项目编号")
+    total_issues += 1
+print(f"\n  共发现 {total_issues} 类问题需要修复")

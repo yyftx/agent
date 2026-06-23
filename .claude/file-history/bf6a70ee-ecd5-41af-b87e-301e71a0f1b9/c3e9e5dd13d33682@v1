@@ -1,0 +1,70 @@
+import pygame
+import sys
+import random
+
+# 初始化pygame
+pygame.init()
+
+# 屏幕设置
+width, height = 300, 400
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("像素流泪猫咪")
+
+# 定义颜色
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+BROWN = (165, 42, 42)
+LIGHT_BROWN = (210, 180, 140)
+BLUE = (0, 191, 255)
+
+# 猫咪像素画
+def draw_cat(x, y):
+    # 头部
+    pygame.draw.rect(screen, LIGHT_BROWN, (x + 30, y, 40, 40), border_radius=10)
+    # 耳朵
+    pygame.draw.rect(screen, LIGHT_BROWN, (x + 20, y + 5, 20, 20), border_radius=5)
+    pygame.draw.rect(screen, LIGHT_BROWN, (x + 70, y + 5, 20, 20), border_radius=5)
+    # 眼睛
+    pygame.draw.circle(screen, BLUE, (x + 50, y + 25), 5)
+    pygame.draw.circle(screen, BLUE, (x + 70, y + 25), 5)
+    # 鼻子
+    pygame.draw.circle(screen, BROWN, (x + 60, y + 35), 3)
+    # 身体
+    pygame.draw.rect(screen, LIGHT_BROWN, (x + 30, y + 40, 40, 60), border_radius=10)
+    # 尾巴
+    pygame.draw.rect(screen, BROWN, (x + 80, y + 70, 20, 10), border_radius=5)
+
+# 眼泪效果
+tears = []
+def draw_tears():
+    for i in range(len(tears) - 1, -1, -1):
+        x, y = tears[i]
+        pygame.draw.circle(screen, BLUE, (x, y), 2)
+        if y > height:
+            del tears[i]
+        else:
+            tears[i] = [x, y + 1]
+
+# 主循环
+clock = pygame.time.Clock()
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        # 点击屏幕生成眼泪
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            tears.append(list(pygame.mouse.get_pos()))
+
+    screen.fill(BLACK)
+    draw_cat(80, 100)
+    draw_tears()
+    # 随机生成眼泪
+    if random.random() < 0.1:
+        tears.append([130 + random.randint(-20, 20), 125])
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+sys.exit()

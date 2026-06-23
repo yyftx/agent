@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手势控制 · 3D球形相册</title>
+    <style>
+        :root { --bg: #000010; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            overflow: hidden;
+            background: var(--bg);
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #three-canvas {
+            display: block;
+            position: fixed;
+            inset: 0;
+            width: 100vw; height: 100vh;
+        }
+
+        #cam-video {
+            position: fixed;
+            top: 12px; right: 12px;
+            width: 160px; height: 120px;
+            opacity: 0.12;
+            border-radius: 10px;
+            z-index: 100;
+            transform: scaleX(-1);
+            pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        /* ---- 加载遮罩 ---- */
+        #loading-overlay {
+            position: fixed; inset: 0; z-index: 999;
+            background: var(--bg);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 0.5s;
+        }
+        #loading-overlay.hide { opacity: 0; pointer-events: none; }
+        #loading-spinner {
+            width: 44px; height: 44px;
+            border: 3px solid rgba(255,255,255,0.12);
+            border-top-color: rgba(180,160,255,0.9);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin-bottom: 18px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #loading-msg { color: rgba(255,255,255,0.5); font-size: 13px; letter-spacing: 0.5px; }
+
+        /* ---- 按钮区 ---- */
+        .bottom-bar {
+            position: fixed; bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex; gap: 12px; align-items: center;
+        }
+        .btn {
+            padding: 11px 26px;
+            border-radius: 40px;
+            font-size: 14px;
+            letter-spacing: 0.4px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .btn:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 0 28px rgba(140,120,255,0.3);
+            transform: translateY(-1px);
+        }
+        .btn.accent {
+            background: rgba(130,110,255,0.22);
+            border-color: rgba(160,140,255,0.45);
+        }
+        .btn.accent:hover { box-shadow: 0 0 36px rgba(140,120,255,0.45); }
+        #file-input { display: none; }
+
+        /* ---- 状态提示 ---- */
+        .status-bar {
+            position: fixed; top: 28px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex; align-items: center; gap: 10px;
+            pointer-events: none;
+        }
+        .status-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #ff5555;
+            transition: all 0.4s;
+        }
+        .status-dot.on { background: #55ff88; box-shadow: 0 0 14px #55ff88; }
+        .status-dot.warn { background: #ffaa40; box-shadow: 0 0 10px #ffaa40; }
+        .status-label {
+            color: rgba(255,255,255,0.45);
+            font-size: 12px;
+            letter-spacing: 0.3px;
+            transition: color 0.4s;
+        }
+        .status-label.on { color: rgba(180,255,180,0.85); }
+
+        .hint-bar {
+            position: fixed; bottom: 110px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            color: rgba(255,255,255,0.5);
+            font-size: 12px;
+            text-align: center;
+            pointer-events: none;
+            letter-spacing: 0.3px;
+            transition: opacity 0.8s;
+        }
+
+        /* ---- 照片计数角标 ---- */
+        .photo-count {
+            position: fixed; top: 28px; right: 24px; z-index: 10;
+            color: rgba(255,255,255,0.35);
+            font-size: 12px;
+        }
+
+        @media (max-width: 640px) {
+            .btn { padding: 9px 18px; font-size: 12px; }
+            .hint-bar { font-size: 10px; bottom: 95px; }
+            .bottom-bar { bottom: 28px; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="three-canvas"></canvas>
+    <video id="cam-video" autoplay playsinline muted></video>
+    <input type="file" id="file-input" accept="image/*" multiple>
+
+    <!-- 加载 -->
+    <div id="loading-overlay">
+        <div id="loading-spinner"></div>
+        <div id="loading-msg">Loading…</div>
+    </div>
+
+    <!-- UI -->
+    <div class="status-bar">
+        <div class="status-dot" id="status-dot"></div>
+        <span class="status-label" id="status-label">初始化…</span>
+    </div>
+    <div class="hint-bar" id="hint-bar">
+        ✋ 手掌移动旋转 &nbsp;|&nbsp; 🤏 捏合缩放 &nbsp;|&nbsp; ✊ 握拳粒子散开
+    </div>
+    <div class="photo-count" id="photo-count"></div>
+    <div class="bottom-bar">
+        <button class="btn accent" id="upload-btn">📷 上传照片</button>
+        <button class="btn" id="reset-btn">🔄 重置</button>
+    </div>
+
+    <!-- ==================== Import Map (Three.js) ==================== -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <!-- ==================== MediaPipe CDN ==================== -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js">
+    </script>
+
+    <!-- ==================== 主程序 ==================== -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+        // ============ DOM ============
+        const canvas3d = document.getElementById('three-canvas');
+        const videoEl = document.getElementById('cam-video');
+        const fileInput = document.getElementById('file-input');
+        const uploadBtn = document.getElementById('upload-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const hintBar = document.getElementById('hint-bar');
+        const statusDot = document.getElementById('status-dot');
+        const statusLabel = document.getElementById('status-label');
+        const photoCount = document.getElementById('photo-count');
+        const loadOverlay = document.getElementById('loading-overlay');
+        const loadMsg = document.getElementById('loading-msg');
+
+        // ============ THREE.JS 场景 ============
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas3d, antialias: true, alpha: false });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000010);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000010);
+        scene.fog = new THREE.FogExp2(0x000010, 0.00005);
+
+        const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.5, 50);
+        camera.position.set(0, 0.2, 6.5);
+        camera.lookAt(0, 0, 0);
+
+        // ---- 后处理：Bloom ----
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+
+        const bloomPass = new UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight),
+            1.3,  // strength - 辉光强度
+            0.45, // radius  - 扩散半径
+            0.7   // threshold - 亮度阈值
+        );
+        composer.addPass(bloomPass);
+
+        // ---- 光照 ----
+        scene.add(new THREE.AmbientLight(0x334466, 2.2));
+        const keyLight = new THREE.DirectionalLight(0xffffff, 4.0);
+        keyLight.position.set(8, 6, 10);
+        scene.add(keyLight);
+        const rimLight = new THREE.DirectionalLight(0x6688cc, 2.5);
+        rimLight.position.set(-6, -1, -5);
+        scene.add(rimLight);
+        const topLight = new THREE.DirectionalLight(0xffaacc, 1.0);
+        topLight.position.set(0, 8, 2);
+        scene.add(topLight);
+
+        // ---- 星空背景 ----
+        const starsGeo = new THREE.BufferGeometry();
+        const STAR_N = 2500;
+        const sPos = new Float32Array(STAR_N * 3);
+        const sCol = new Float32Array(STAR_N * 3);
+        for (let i = 0; i < STAR_N; i++) {
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            const r = 11 + Math.random() * 24;
+            sPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+            sPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+            sPos[i * 3 + 2] = r * Math.cos(phi);
+            sCol[i * 3] = 0.65 + Math.random() * 0.35;
+            sCol[i * 3 + 1] = 0.7 + Math.random() * 0.3;
+            sCol[i * 3 + 2] = 0.8 + Math.random() * 0.2;
+        }
+        starsGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
+        starsGeo.setAttribute('color', new THREE.BufferAttribute(sCol, 3));
+        const starfield = new THREE.Points(starsGeo, new THREE.PointsMaterial({
+            size: 0.055,
+            vertexColors: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            transparent: true,
+            opacity: 0.9,
+        }));
+        scene.add(starfield);
+
+        // ---- 球体纹理生成 ----
+        const TEX_W = 2048, TEX_H = 1024;
+
+        function createDefaultTexture() {
+            const cv = document.createElement('canvas');
+            cv.width = TEX_W;
+            cv.height = TEX_H;
+            const ctx = cv.getContext('2d');
+
+            // 深空底座
+            const baseGrad = ctx.createLinearGradient(0, 0, 0, TEX_H);
+            baseGrad.addColorStop(0, '#0a0a24');
+            baseGrad.addColorStop(0.5, '#141430');
+            baseGrad.addColorStop(1, '#0a0a24');
+            ctx.fillStyle = baseGrad;
+            ctx.fillRect(0, 0, TEX_W, TEX_H);
+
+            // 彩色拼贴格子
+            const COLS = 18, ROWS = 9;
+            const cw = TEX_W / COLS, ch = TEX_H / ROWS;
+            const gap = 3;
+
+            for (let row = 0; row < ROWS; row++) {
+                for (let col = 0; col < COLS; col++) {
+                    const hue = ((col / COLS) * 360 + row * 18 + Math.random() * 30) % 360;
+                    const sat = 35 + Math.random() * 40;
+                    const lit = 18 + Math.random() * 22;
+                    ctx.fillStyle = `hsl(${hue}, ${sat}%, ${lit}%)`;
+                    ctx.fillRect(col * cw + gap, row * ch + gap, cw - gap * 2, ch - gap * 2);
+
+                    // 每个格子里的微妙亮点
+                    ctx.fillStyle = `hsla(${hue}, ${sat}%, ${lit + 20}%, 0.35)`;
+                    ctx.beginPath();
+                    ctx.arc(col * cw + cw * 0.4, row * ch + ch * 0.35, Math.min(cw, ch) * 0.08, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            // 发光线条
+            ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+            ctx.lineWidth = 0.8;
+            for (let i = 0; i < 60; i++) {
+                ctx.beginPath();
+                const lx = Math.random() * TEX_W;
+                const ly = Math.random() * TEX_H;
+                ctx.moveTo(lx, ly);
+                ctx.lineTo(lx + (Math.random() - 0.5) * 400, ly + (Math.random() - 0.5) * 250);
+                ctx.stroke();
+            }
+
+            return cv;
+        }
+
+        function roundedRect(ctx, x, y, w, h, r) {
+            ctx.moveTo(x + r, y);
+            ctx.lineTo(x + w - r, y);
+            ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+            ctx.lineTo(x + w, y + h - r);
+            ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+            ctx.lineTo(x + r, y + h);
+            ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+            ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y);
+            ctx.closePath();
+        }
+
+        function buildCollageCanvas(images) {
+            const cv = document.createElement('canvas');
+            cv.width = TEX_W;
+            cv.height = TEX_H;
+            const ctx = cv.getContext('2d');
+            ctx.fillStyle = '#0b0b1e';
+            ctx.fillRect(0, 0, TEX_W, TEX_H);
+            if (!images || images.length === 0) return cv;
+
+            const n = images.length;
+            const cols = Math.max(1, Math.round(Math.sqrt(n * 2)));
+            const rows = Math.ceil(n / cols);
+            const cw = TEX_W / cols, ch = TEX_H / rows;
+            const gap = 5;
+
+            for (let i = 0; i < n; i++) {
+                const img = images[i];
+                const col = i % cols;
+                const row = Math.floor(i / cols);
+                const cx = col * cw, cy = row * ch;
+                const scale = Math.max(cw / img.width, ch / img.height);
+                const dw = img.width * scale;
+                const dh = img.height * scale;
+                const dx = cx + (cw - dw) / 2;
+                const dy = cy + (ch - dh) / 2;
+
+                ctx.save();
+                ctx.beginPath();
+                roundedRect(ctx, cx + gap, cy + gap, cw - gap * 2, ch - gap * 2, 8);
+                ctx.clip();
+                ctx.drawImage(img, dx, dy, dw, dh);
+                // 微妙边框
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.lineWidth = 1.2;
+                ctx.stroke();
+                ctx.restore();
+            }
+            return cv;
+        }
+
+        // ---- 球体 ----
+        const sphereGeo = new THREE.SphereGeometry(2.1, 80, 80);
+        const defaultTexCanvas = createDefaultTexture();
+        const sphereTex = new THREE.CanvasTexture(defaultTexCanvas);
+        sphereTex.colorSpace = THREE.SRGBColorSpace;
+        sphereTex.wrapS = THREE.RepeatWrapping;
+        sphereTex.wrapT = THREE.RepeatWrapping;
+
+        const sphereMat = new THREE.MeshStandardMaterial({
+            map: sphereTex,
+            roughness: 0.45,
+            metalness: 0.08,
+        });
+        const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+        scene.add(sphere);
+
+        // ---- 大气光晕 ----
+        const glowGeo = new THREE.SphereGeometry(2.3, 64, 64);
+        const glowMat = new THREE.ShaderMaterial({
+            uniforms: {
+                uTime: { value: 0 },
+                uColor: { value: new THREE.Color(0x6688dd) },
+            },
+            vertexShader: /* glsl */ `
+                varying vec3 vNorm;
+                varying vec3 vPos;
+                void main() {
+                    vec4 wp = modelMatrix * vec4(position,1.0);
+                    vPos = wp.xyz;
+                    vNorm = normalize(mat3(modelMatrix) * normal);
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+                }
+            `,
+            fragmentShader: /* glsl */ `
+                varying vec3 vNorm;
+                varying vec3 vPos;
+                uniform float uTime;
+                uniform vec3 uColor;
+                void main() {
+                    vec3 vd = normalize(cameraPosition - vPos);
+                    float f = 1.0 - abs(dot(vd, vNorm));
+                    f = pow(f, 3.8);
+                    gl_FragColor = vec4(uColor, f * 0.4);
+                }
+            `,
+            transparent: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending,
+        });
+        const glowShell = new THREE.Mesh(glowGeo, glowMat);
+        scene.add(glowShell);
+
+        // ---- 球面漂浮粒子 (可散开) ----
+        const SURF_N = 400;
+        const surfBasePos = new Float32Array(SURF_N * 3); // 球面上的原始位置
+        const surfCurPos = new Float32Array(SURF_N * 3); // 当前位置
+        const surfCol = new Float32Array(SURF_N * 3);
+        const surfScattered = new Float32Array(SURF_N); // 散开系数 0=正常 1=完全散开
+        const surfVel = []; // 散开速度向量池
+
+        for (let i = 0; i < SURF_N; i++) {
+            // 球面均匀分布
+            const phi = Math.acos(2 * Math.random() - 1);
+            const theta = Math.random() * Math.PI * 2;
+            const r = 2.18;
+            const x = r * Math.sin(phi) * Math.cos(theta);
+            const y = r * Math.sin(phi) * Math.sin(theta);
+            const z = r * Math.cos(phi);
+            surfBasePos[i * 3] = x;
+            surfBasePos[i * 3 + 1] = y;
+            surfBasePos[i * 3 + 2] = z;
+            surfCurPos[i * 3] = x;
+            surfCurPos[i * 3 + 1] = y;
+            surfCurPos[i * 3 + 2] = z;
+            surfCol[i * 3] = 0.8 + Math.random() * 0.2;
+            surfCol[i * 3 + 1] = 0.5 + Math.random() * 0.4;
+            surfCol[i * 3 + 2] = 0.2 + Math.random() * 0.3;
+            surfScattered[i] = 0;
+            // 为每个粒子预计算散开方向(径向+扰动)
+            const dir = new THREE.Vector3(x, y, z).normalize();
+            dir.x += (Math.random() - 0.5) * 0.6;
+            dir.y += (Math.random() - 0.5) * 0.6;
+            dir.z += (Math.random() - 0.5) * 0.6;
+            dir.normalize();
+            surfVel.push(dir);
+        }
+
+        const surfGeo = new THREE.BufferGeometry();
+        surfGeo.setAttribute('position', new THREE.BufferAttribute(surfCurPos, 3));
+        surfGeo.setAttribute('color', new THREE.BufferAttribute(surfCol, 3));
+        const surfMat = new THREE.PointsMaterial({
+            size: 0.04,
+            vertexColors: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            transparent: true,
+            opacity: 0.8,
+        });
+        const surfPoints = new THREE.Points(surfGeo, surfMat);
+        scene.add(surfPoints);
+
+        // ---- 指尖拖尾粒子 ----
+        const TRAIL_N = 500;
+        const trailPos = new Float32Array(TRAIL_N * 3);
+        const trailCol = new Float32Array(TRAIL_N * 3);
+        const trailSizes = new Float32Array(TRAIL_N);
+        for (let i = 0; i < TRAIL_N; i++) trailPos[i * 3 + 1] = -999;
+
+        const trailGeo = new THREE.BufferGeometry();
+        trailGeo.setAttribute('position', new THREE.BufferAttribute(trailPos, 3));
+        trailGeo.setAttribute('color', new THREE.BufferAttribute(trailCol, 3));
+
+        function makeGlowTex() {
+            const sz = 64;
+            const cv = document.createElement('canvas');
+            cv.width = sz;
+            cv.height = sz;
+            const ctx = cv.getContext('2d');
+            const g = ctx.createRadialGradient(sz / 2, sz / 2, 0, sz / 2, sz / 2, sz / 2);
+            g.addColorStop(0, 'rgba(255,255,255,1)');
+            g.addColorStop(0.06, 'rgba(255,220,160,0.95)');
+            g.addColorStop(0.2, 'rgba(255,140,40,0.7)');
+            g.addColorStop(0.45, 'rgba(255,80,10,0.2)');
+            g.addColorStop(0.7, 'rgba(255,30,0,0.03)');
+            g.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, sz, sz);
+            return new THREE.CanvasTexture(cv);
+        }
+
+        const trailMat = new THREE.PointsMaterial({
+            size: 0.22,
+            map: makeGlowTex(),
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            vertexColors: true,
+            transparent: true,
+        });
+        const trailPoints = new THREE.Points(trailGeo, trailMat);
+        scene.add(trailPoints);
+
+        const activeTrails = [];
+
+        function spawnTrail(x, y, z, count = 3) {
+            for (let i = 0; i < count; i++) {
+                activeTrails.push({
+                    pos: new THREE.Vector3(x + (Math.random() - 0.5) * 0.12,
+                        y + (Math.random() - 0.5) * 0.12,
+                        z + (Math.random() - 0.5) * 0.12),
+                    vel: new THREE.Vector3((Math.random() - 0.5) * 0.6,
+                        (Math.random() - 0.5) * 0.6,
+                        (Math.random() - 0.5) * 0.6),
+                    life: 1.0,
+                    decay: 0.7 + Math.random() * 1.6,
+                    size: 0.03 + Math.random() * 0.14,
+                    hue: 0.08 + Math.random() * 0.09,
+                });
+            }
+            while (activeTrails.length > TRAIL_N) activeTrails.shift();
+        }
+
+        function updateTrails(dt) {
+            for (let i = activeTrails.length - 1; i >= 0; i--) {
+                const t = activeTrails[i];
+                t.life -= t.decay * dt;
+                t.pos.x += t.vel.x * dt;
+                t.pos.y += t.vel.y * dt;
+                t.pos.z += t.vel.z * dt;
+                t.vel.multiplyScalar(1 - 1.5 * dt);
+                if (t.life <= 0) activeTrails.splice(i, 1);
+            }
+            for (let i = 0; i < TRAIL_N; i++) {
+                const i3 = i * 3;
+                if (i < activeTrails.length) {
+                    const t = activeTrails[i];
+                    trailPos[i3] = t.pos.x;
+                    trailPos[i3 + 1] = t.pos.y;
+                    trailPos[i3 + 2] = t.pos.z;
+                    const a = t.life;
+                    const c = new THREE.Color().setHSL(t.hue, 1, 0.35 + a * 0.65);
+                    trailCol[i3] = c.r * a;
+                    trailCol[i3 + 1] = c.g * a;
+                    trailCol[i3 + 2] = c.b * a;
+                    trailSizes[i] = t.size * a;
+                } else {
+                    trailPos[i3 + 1] = -999;
+                    trailSizes[i] = 0;
+                }
+            }
+            trailGeo.attributes.position.needsUpdate = true;
+            trailGeo.attributes.color.needsUpdate = true;
+        }
+
+        // ============ 手势状态 ============
+        const G = {
+            detected: false,
+            palmX: 0.5,
+            palmY: 0.5,
+            pinchDist: 0.1,
+            extendedFingers: 5,
+            fingertipX: 0.5,
+            fingertipY: 0.5,
+            // 球体控制
+            rotSpeedY: 0,
+            rotSpeedX: 0,
+            targetScale: 1.0,
+            currentScale: 1.0,
+            // 握拳散开
+            fistHeld: 0, // 握拳持续时间
+            scatterTrigger: false,
+        };
+
+        function countExtendedFingers(lm) {
+            // 指尖 y < PIP关节 y → 手指伸开
+            let c = 0;
+            const checks = [
+                [8, 6],
+                [12, 10],
+                [16, 14],
+                [20, 18]
+            ]; // 食指~小指
+            for (const [tip, pip] of checks) {
+                if (lm[tip].y < lm[pip].y - 0.02) c++;
+            }
+            // 拇指：x 方向偏移
+            if (Math.abs(lm[4].x - lm[2].x) > 0.04) c++;
+            return c;
+        }
+
+        function onHandsResults(results) {
+            if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+                const lm = results.multiHandLandmarks[0];
+
+                // 手掌中心
+                G.palmX = (lm[0].x + lm[9].x) / 2;
+                G.palmY = (lm[0].y + lm[9].y) / 2;
+                // 指尖
+                G.fingertipX = lm[8].x;
+                G.fingertipY = lm[8].y;
+                // 捏合距离
+                const dx = lm[4].x - lm[8].x;
+                const dy = lm[4].y - lm[8].y;
+                G.pinchDist = Math.sqrt(dx * dx + dy * dy);
+                // 伸开指数
+                G.extendedFingers = countExtendedFingers(lm);
+                G.detected = true;
+            } else {
+                G.detected = false;
+            }
+        }
+
+        // ============ 初始化 MediaPipe ============
+        let handsInstance = null;
+
+        async function initMediaPipe() {
+            const hasHands = typeof window.Hands !== 'undefined';
+
+            if (!hasHands) {
+                statusDot.className = 'status-dot warn';
+                statusLabel.textContent = 'MediaPipe 未加载（使用鼠标）';
+                return false;
+            }
+
+            try {
+                handsInstance = new window.Hands({
+                    locateFile: (file) =>
+                        `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${file}`,
+                });
+                handsInstance.setOptions({
+                    maxNumHands: 1,
+                    modelComplexity: 1,
+                    minDetectionConfidence: 0.7,
+                    minTrackingConfidence: 0.6,
+                });
+                handsInstance.onResults(onHandsResults);
+
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { width: 640, height: 480, facingMode: 'user' },
+                });
+                videoEl.srcObject = stream;
+                await videoEl.play();
+
+                // Camera utils 或手动循环
+                const hasCamUtils = typeof window.Camera !== 'undefined';
+                if (hasCamUtils) {
+                    const cam = new window.Camera(videoEl, {
+                        onFrame: async () => {
+                            if (handsInstance) await handsInstance.send({ image: videoEl });
+                        },
+                        width: 640,
+                        height: 480,
+                    });
+                    cam.start();
+                } else {
+                    // 手动 RAF 循环
+                    (function loop() {
+                        if (handsInstance && videoEl.readyState >= 2) {
+                            handsInstance.send({ image: videoEl });
+                        }
+                        requestAnimationFrame(loop);
+                    })();
+                }
+
+                statusDot.className = 'status-dot on';
+                statusLabel.className = 'status-label on';
+                statusLabel.textContent = '✋ 手势已就绪';
+                return true;
+            } catch (err) {
+                console.warn('[手势] 初始化失败:', err.message);
+                statusDot.className = 'status-dot warn';
+                statusLabel.textContent = '摄像头不可用（鼠标模式）';
+                return false;
+            }
+        }
+
+        // ============ 坐标映射 ============
+        function screenToWorld(nx, ny, targetZ) {
+            const vFov = camera.fov * Math.PI / 180;
+            const dist = camera.position.z - targetZ;
+            const visH = 2 * Math.tan(vFov / 2) * dist;
+            const visW = visH * camera.aspect;
+            return new THREE.Vector3((nx - 0.5) * visW, (0.5 - ny) * visH, targetZ);
+        }
+
+        // ============ 鼠标降级 ============
+        let mouseDragging = false,
+            pmx = 0,
+            pmy = 0;
+
+        canvas3d.addEventListener('mousedown', (e) => { mouseDragging = true;
+            pmx = e.clientX;
+            pmy = e.clientY; });
+        window.addEventListener('mouseup', () => { mouseDragging = false; });
+        window.addEventListener('mousemove', (e) => {
+            if (!mouseDragging || G.detected) return;
+            G.rotSpeedY = (e.clientX - pmx) * 0.005;
+            G.rotSpeedX = (e.clientY - pmy) * 0.005;
+            pmx = e.clientX;
+            pmy = e.clientY;
+        });
+        canvas3d.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            G.targetScale = Math.max(0.45, Math.min(2.6, G.targetScale - e.deltaY * 0.0008));
+        }, { passive: false });
+
+        // 触摸
+        let touchId = null,
+            tpx = 0,
+            tpy = 0,
+            tdist0 = 0;
+        canvas3d.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) { touchId = e.touches[0].identifier;
+                tpx = e.touches[0].clientX;
+                tpy = e.touches[0].clientY; }
+            if (e.touches.length === 2) {
+                tdist0 = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[
+                    1].clientY);
+            }
+        }, { passive: false });
+        canvas3d.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (e.touches.length === 1 && touchId !== null && !G.detected) {
+                G.rotSpeedY = (e.touches[0].clientX - tpx) * 0.005;
+                G.rotSpeedX = (e.touches[0].clientY - tpy) * 0.005;
+                tpx = e.touches[0].clientX;
+                tpy = e.touches[0].clientY;
+            }
+            if (e.touches.length === 2 && tdist0 > 0 && !G.detected) {
+                const td = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1]
+                    .clientY);
+                G.targetScale = Math.max(0.45, Math.min(2.6, G.targetScale * (td / tdist0)));
+                tdist0 = td;
+            }
+        }, { passive: false });
+        canvas3d.addEventListener('touchend', () => { touchId = null;
+            tdist0 = 0; });
+
+        // ============ 手势处理 ============
+        const DZ = 0.12,
+            ROT_S = 4.5,
+            SMOOTH = 8.0;
+
+        function processGestures(dt) {
+            if (G.detected) {
+                // 旋转
+                const ox = G.palmX - 0.5,
+                    oy = G.palmY - 0.5;
+                let tRY = 0,
+                    tRX = 0;
+                if (Math.abs(ox) > DZ)
+                    tRY = (ox - Math.sign(ox) * DZ) / (0.5 - DZ) * ROT_S * Math.sign(ox);
+                if (Math.abs(oy) > DZ)
+                    tRX = (oy - Math.sign(oy) * DZ) / (0.5 - DZ) * ROT_S * Math.sign(oy);
+                G.rotSpeedY += (tRY - G.rotSpeedY) * Math.min(SMOOTH * dt, 1);
+                G.rotSpeedX += (tRX - G.rotSpeedX) * Math.min(SMOOTH * dt, 1);
+
+                // 缩放（捏合距离映射）
+                const pn = THREE.MathUtils.clamp(G.pinchDist, 0.02, 0.5);
+                const st = THREE.MathUtils.mapLinear(pn, 0.02, 0.35, 2.2, 0.5);
+                G.targetScale += (st - G.targetScale) * Math.min(6 * dt, 1);
+                G.targetScale = THREE.MathUtils.clamp(G.targetScale, 0.45, 2.6);
+
+                // 指尖粒子
+                const fp = screenToWorld(G.fingertipX, G.fingertipY, 0.7);
+                spawnTrail(fp.x, fp.y, fp.z, 5);
+
+                // 握拳 → 触发散开
+                if (G.extendedFingers <= 1) {
+                    G.fistHeld += dt;
+                    if (G.fistHeld > 0.35 && !G.scatterTrigger) {
+                        G.scatterTrigger = true;
+                    }
+                } else {
+                    G.fistHeld = 0;
+                    G.scatterTrigger = false;
+                }
+
+                statusDot.className = 'status-dot on';
+                statusLabel.className = 'status-label on';
+                statusLabel.textContent = G.scatterTrigger ? '✊ 粒子散开！' : '✋ 手势控制中';
+            } else {
+                // 无手势 → 自动旋转
+                G.rotSpeedY += (0.22 - G.rotSpeedY) * Math.min(1.5 * dt, 1);
+                G.rotSpeedX += (0 - G.rotSpeedX) * Math.min(2.0 * dt, 1);
+                G.targetScale += (1.0 - G.targetScale) * Math.min(3.0 * dt, 1);
+                G.fistHeld = 0;
+                G.scatterTrigger = false;
+                statusDot.className = 'status-dot';
+                statusLabel.className = 'status-label';
+                statusLabel.textContent = '🔄 自动旋转中';
+            }
+            G.currentScale += (G.targetScale - G.currentScale) * Math.min(6 * dt, 1);
+        }
+
+        // ============ 球面粒子散开/恢复 ============
+        function updateSurfaceParticles(dt) {
+            const scatterStrength = 3.5;
+            const recoverSpeed = 5.0;
+            const scatterSpeed = 8.0;
+
+            for (let i = 0; i < SURF_N; i++) {
+                const i3 = i * 3;
+                const bx = surfBasePos[i3],
+                    by = surfBasePos[i3 + 1],
+                    bz = surfBasePos[i3 + 2];
+
+                // 目标散开度
+                const target = G.scatterTrigger ? 1.0 : 0.0;
+                const speed = target > surfScattered[i] ? scatterSpeed : recoverSpeed;
+                surfScattered[i] += (target - surfScattered[i]) * Math.min(speed * dt, 1);
+
+                // 散开位置
+                const s = surfScattered[i];
+                const scatterX = bx + surfVel[i].x * scatterStrength * s;
+                const scatterY = by + surfVel[i].y * scatterStrength * s;
+                const scatterZ = bz + surfVel[i].z * scatterStrength * s;
+
+                // 平滑过渡
+                const cx = surfCurPos[i3],
+                    cy = surfCurPos[i3 + 1],
+                    cz = surfCurPos[i3 + 2];
+                surfCurPos[i3] = cx + (scatterX - cx) * Math.min(10 * dt, 1);
+                surfCurPos[i3 + 1] = cy + (scatterY - cy) * Math.min(10 * dt, 1);
+                surfCurPos[i3 + 2] = cz + (scatterZ - cz) * Math.min(10 * dt, 1);
+
+                // 动态颜色：散开时偏金
+                const r = 0.8 + s * 0.2;
+                const g = 0.5 + Math.random() * 0.4 - s * 0.2;
+                const b = 0.2 + Math.random() * 0.3 - s * 0.1;
+                surfCol[i3] = r;
+                surfCol[i3 + 1] = Math.max(0, g);
+                surfCol[i3 + 2] = Math.max(0, b);
+            }
+            surfGeo.attributes.position.needsUpdate = true;
+            surfGeo.attributes.color.needsUpdate = true;
+        }
+
+        // ============ 图片上传 ============
+        let loadedCount = 0;
+
+        uploadBtn.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', () => {
+            const files = Array.from(fileInput.files).filter(f => f.type.startsWith('image/'));
+            if (files.length === 0) return;
+
+            loadMsg.textContent = `处理 ${files.length} 张照片…`;
+            loadOverlay.classList.remove('hide');
+
+            Promise.all(files.map(f => new Promise(resolve => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.onerror = () => resolve(null);
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(f);
+            }))).then(images => {
+                const valid = images.filter(Boolean);
+                if (valid.length > 0) {
+                    const cv = buildCollageCanvas(valid);
+                    const tex = new THREE.CanvasTexture(cv);
+                    tex.colorSpace = THREE.SRGBColorSpace;
+                    tex.wrapS = THREE.RepeatWrapping;
+                    tex.wrapT = THREE.RepeatWrapping;
+                    if (sphereMat.map) sphereMat.map.dispose();
+                    sphereMat.map = tex;
+                    sphereMat.needsUpdate = true;
+                    loadedCount = valid.length;
+                    photoCount.textContent = `📷 ${loadedCount} 张`;
+                    hintBar.textContent =
+                        `✅ ${loadedCount} 张照片 · ✋ 旋转 | 🤏 缩放 | ✊ 散开`;
+                    hintBar.style.color = 'rgba(160,255,160,0.8)';
+                    hintBar.style.opacity = '1';
+                }
+                loadOverlay.classList.add('hide');
+            });
+            fileInput.value = '';
+        });
+
+        resetBtn.addEventListener('click', () => {
+            const cv = createDefaultTexture();
+            const tex = new THREE.CanvasTexture(cv);
+            tex.colorSpace = THREE.SRGBColorSpace;
+            tex.wrapS = THREE.RepeatWrapping;
+            tex.wrapT = THREE.RepeatWrapping;
+            if (sphereMat.map) sphereMat.map.dispose();
+            sphereMat.map = tex;
+            sphereMat.needsUpdate = true;
+            loadedCount = 0;
+            photoCount.textContent = '';
+            hintBar.textContent = '✋ 手掌移动旋转 | 🤏 捏合缩放 | ✊ 握拳粒子散开';
+            hintBar.style.color = 'rgba(255,255,255,0.5)';
+            hintBar.style.opacity = '1';
+        });
+
+        // ============ 窗口调整 ============
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth,
+                h = window.innerHeight;
+            renderer.setSize(w, h);
+            composer.setSize(w, h);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+        });
+
+        // ============ 隐藏加载遮罩 ============
+        loadOverlay.classList.add('hide');
+
+        // ============ 启动 ============
+        const mediaPipeReady = await initMediaPipe();
+
+        // ============ 动画循环 ============
+        const clock = new THREE.Clock();
+        let elapsed = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const dt = Math.min(clock.getDelta(), 0.1);
+            elapsed += dt;
+
+            processGestures(dt);
+            updateSurfaceParticles(dt);
+            updateTrails(dt);
+
+            // 球体旋转
+            sphere.rotation.y += G.rotSpeedY * dt;
+            sphere.rotation.x += G.rotSpeedX * dt;
+            sphere.rotation.x = THREE.MathUtils.clamp(sphere.rotation.x, -Math.PI / 2.1, Math.PI / 2.1);
+            sphere.scale.setScalar(G.currentScale);
+
+            // 光晕 & 球面粒子跟随
+            glowShell.rotation.copy(sphere.rotation);
+            glowShell.scale.copy(sphere.scale);
+            glowMat.uniforms.uTime.value = elapsed;
+            surfPoints.rotation.copy(sphere.rotation);
+            surfPoints.scale.copy(sphere.scale);
+
+            // 星空微动
+            starfield.rotation.y += dt * 0.012;
+            starfield.rotation.x += dt * 0.004;
+
+            // Bloom 后处理渲染
+            composer.render();
+
+            // 渐隐提示
+            if (elapsed > 10 && hintBar.style.opacity !== '0') {
+                hintBar.style.transition = 'opacity 3s';
+                hintBar.style.opacity = '0';
+            }
+        }
+
+        animate();
+
+        console.log('🚀 3D 球形相册已启动');
+        console.log('   ✋ 手掌移动 → 旋转球体');
+        console.log('   🤏 捏合 → 缩放球体');
+        console.log('   ✊ 握拳 → 粒子散开');
+        console.log('   ✨ 指尖 → 粒子拖尾');
+        console.log('   📷 上传照片 → 拼贴球面');
+        console.log('   🌟 UnrealBloomPass 辉光后处理');
+    </script>
+</body>
+</html>

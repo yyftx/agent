@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+<title>走进浙江</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<!------网站Logo和用户登录注册------>
+<div class="box">注册登录
+  
+</div>
+<!--------banner-------->
+<div class="top">
+ 网站banner
+</div>
+<!------导航------>
+<div class="nav_bg">
+  导航
+</div>
+<!-----图片浏览及最新动态----->
+<div class="box">图片浏览及最新动态
+  <div class="left"></div>
+ 
+  <div class="right"></div>
+   <div class="clear"></div>
+</div>
+
+<!------------图片1--------->
+<div class="box mar_top"><img  /></div>
+<!------------走进浙江、浙江历史--------->
+<div class="box"> 
+ 
+  <div class="left">
+    
+  </div>
+  <div class="right">
+    
+      </div>
+     
+      <div class="clear"></div>
+    
+</div>
+<!--------图片2-------->
+<div class="box mar_top"><a href="#"><img/></a></div>
+<!--------浙江名人 浙江文化-------->
+<div class="box">
+  <div class="left">
+   
+  </div>
+  <div class="right">
+  
+  </div>
+  <div class="clear"></div>
+</div>
+
+
+<!---------图片3--------->
+<div class="box mar_top"><img /></div>
+<!--------浙江旅游、浙江美食-------->
+<div class="box">
+  <div class="left">
+   
+  </div>
+  <div class="right">
+  
+  </div>
+  <div class="clear"></div>
+</div>
+  <div class="clear"></div>
+<!--------快速通道-------->
+<div class="sp">
+	<div class="sp_md">快速通道</div>
+   
+</div>
+  <div class="clear"></div>
+<!--------foot-------->
+<div class="foot mar_top">
+  <div class="box">
+    
+  </div>
+</div>
+  <div class="clear"></div>
+<div class="box copyright">Copyright版权所有 </div>
+</body>
+</html>

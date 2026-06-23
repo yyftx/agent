@@ -1,0 +1,312 @@
+"""
+中华美食网站图片生成器
+生成所有需要的占位图片，使用暖色调（红色/金色）中国风配色
+"""
+import os
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import colorsys
+
+IMG_DIR = r"web作业\项目10\任务10.5 浙山浙水快速通道与页脚的实现\images"
+os.makedirs(IMG_DIR, exist_ok=True)
+
+# 配色方案
+C_RED = "#C41E1E"
+C_DARK_RED = "#8B1A1A"
+C_GOLD = "#FDA701"
+C_WARM_BG = "#FFF8F0"  # 暖白背景
+C_LIGHT_RED = "#FFF0ED"
+C_BROWN = "#5C2E0A"
+C_WHITE = "#FFFFFF"
+C_CREAM = "#FFF5E6"
+
+# 尝试加载中文字体
+def get_font(size=20, bold=False):
+    font_paths = [
+        "C:/Windows/Fonts/msyh.ttc",       # 微软雅黑
+        "C:/Windows/Fonts/msyhbd.ttc",      # 微软雅黑粗体
+        "C:/Windows/Fonts/simsun.ttc",      # 宋体
+        "C:/Windows/Fonts/simhei.ttf",      # 黑体
+        "C:/Windows/Fonts/STKAITI.TTF",     # 楷体
+        "C:/Windows/Fonts/Dengb.ttf",       # 等线
+    ]
+    for fp in font_paths:
+        if os.path.exists(fp):
+            try:
+                return ImageFont.truetype(fp, size)
+            except:
+                continue
+    return ImageFont.load_default()
+
+
+def hex_to_rgb(hex_color):
+    hex_color = hex_color.lstrip('#')
+    return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+
+
+def draw_centered_text(draw, text, y, width, font, fill):
+    """居中绘制文字"""
+    bbox = draw.textbbox((0, 0), text, font=font)
+    tw = bbox[2] - bbox[0]
+    x = (width - tw) // 2
+    draw.text((x, y), text, font=font, fill=fill)
+
+
+def make_gradient(w, h, color1, color2, vertical=True):
+    """创建渐变色背景"""
+    img = Image.new('RGB', (w, h))
+    r1, g1, b1 = hex_to_rgb(color1)
+    r2, g2, b2 = hex_to_rgb(color2)
+    for i in range(h if vertical else w):
+        ratio = i / (h if vertical else w)
+        r = int(r1 + (r2 - r1) * ratio)
+        g = int(g1 + (g2 - g1) * ratio)
+        b = int(b1 + (b2 - b1) * ratio)
+        if vertical:
+            for x in range(w):
+                img.putpixel((x, i), (r, g, b))
+        else:
+            for y in range(h):
+                img.putpixel((i, y), (r, g, b))
+    return img
+
+
+def add_subtle_pattern(draw, w, h):
+    """添加细微的装饰图案"""
+    import random
+    for _ in range(20):
+        x = random.randint(0, w)
+        y = random.randint(0, h)
+        r = random.randint(2, 5)
+        alpha = random.randint(10, 30)
+        draw.ellipse([x-r, y-r, x+r, y+r], fill=(255, 255, 255, alpha))
+
+
+# ==================== Banner 图 (1000x150) ====================
+def create_banner():
+    """主Banner - 中华美食"""
+    w, h = 1000, 150
+    img = make_gradient(w, h, C_DARK_RED, C_RED, vertical=True)
+    draw = ImageDraw.Draw(img, 'RGBA')
+
+    font_big = get_font(48, bold=True)
+    font_sub = get_font(18)
+
+    # 装饰线条
+    for i in range(3):
+        y = 30 + i * 45
+        draw.rectangle([100, y, 900, y+2], fill=(255, 255, 255, 40))
+
+    # 主标题
+    draw_centered_text(draw, "中 华 美 食", 35, w, font_big, hex_to_rgb(C_GOLD))
+    draw_centered_text(draw, "品味舌尖上的中国  ·  传承五千年饮食文化", 95, w, font_sub, C_WHITE)
+
+    img.save(os.path.join(IMG_DIR, "banner_2.jpg"), quality=90)
+    print("✓ banner_2.jpg")
+
+
+# ==================== 分隔条 (1000x100) ====================
+def create_separator(filename, text, color1=C_DARK_RED, color2=C_RED):
+    """分隔条横幅"""
+    w, h = 1000, 100
+    img = make_gradient(w, h, color1, color2, vertical=False)
+    draw = ImageDraw.Draw(img, 'RGBA')
+
+    font = get_font(30, bold=True)
+    draw_centered_text(draw, text, 30, w, font, hex_to_rgb(C_GOLD))
+
+    # 底部装饰线
+    draw.rectangle([200, 75, 800, 77], fill=(255, 255, 255, 60))
+
+    img.save(os.path.join(IMG_DIR, filename), quality=90)
+    print(f"✓ {filename}")
+
+
+# ==================== 美食图片 (800x500) ====================
+def create_food_image(filename, title, subtitle, bg_color1, bg_color2):
+    """菜品类图片 - 带装饰的占位图"""
+    w, h = 800, 500
+    img = make_gradient(w, h, bg_color1, bg_color2, vertical=True)
+    draw = ImageDraw.Draw(img, 'RGBA')
+
+    font_title = get_font(44, bold=True)
+    font_sub = get_font(20)
+    font_emoji = get_font(80)
+
+    # 中心装饰圆
+    cx, cy = w // 2, h // 2 - 20
+    for r in [120, 100, 80]:
+        alpha = 20 if r == 120 else 35 if r == 100 else 50
+        draw.ellipse([cx-r, cy-r, cx+r, cy+r], fill=(255, 255, 255, alpha))
+
+    # 装饰小圆点
+    import random
+    random.seed(hash(title) % 1000)
+    for _ in range(30):
+        x = random.randint(50, w-50)
+        y = random.randint(50, h-50)
+        sz = random.randint(2, 6)
+        alpha = random.randint(15, 40)
+        draw.ellipse([x-sz, y-sz, x+sz, y+sz], fill=(255, 255, 255, alpha))
+
+    # 图标（用文字模拟）
+    icons = {
+        "北京烤鸭": "🦆", "四川火锅": "🍲", "小笼包": "🥟", "东坡肉": "🍖",
+        "麻婆豆腐": "🫘", "饺子": "🥟", "兰州拉面": "🍜", "宫保鸡丁": "🍗",
+    }
+    icon = icons.get(title, "🍽️")
+    draw_centered_text(draw, icon, cy - 80, w, get_font(72), C_WHITE)
+
+    # 标题
+    draw_centered_text(draw, title, cy + 20, w, font_title, C_WHITE)
+    draw_centered_text(draw, subtitle, cy + 75, w, font_sub, (255, 255, 255, 200))
+
+    img.save(os.path.join(IMG_DIR, filename), quality=90)
+    print(f"✓ {filename}")
+
+
+# ==================== 缩略图 (100x100) ====================
+def create_thumbnail(filename, text, color1=C_RED, color2=C_DARK_RED):
+    """100x100 缩略图"""
+    w, h = 100, 100
+    img = make_gradient(w, h, color1, color2, vertical=True)
+    draw = ImageDraw.Draw(img, 'RGBA')
+
+    font = get_font(16, bold=True)
+    # 文字换行处理
+    if len(text) <= 4:
+        draw_centered_text(draw, text, 38, w, font, C_WHITE)
+    else:
+        draw_centered_text(draw, text[:4], 28, w, font, C_WHITE)
+        draw_centered_text(draw, text[4:], 52, w, font, C_WHITE)
+
+    img.save(os.path.join(IMG_DIR, filename), quality=85)
+    print(f"✓ {filename}")
+
+
+# ==================== 历史缩略图 (150x82) ====================
+def create_history_thumb(filename, text, color1="#D4453E", color2=C_DARK_RED):
+    """150x82 历史时期缩略图"""
+    w, h = 150, 82
+    img = make_gradient(w, h, color1, color2, vertical=True)
+    draw = ImageDraw.Draw(img, 'RGBA')
+
+    font = get_font(18, bold=True)
+    draw_centered_text(draw, text, 28, w, font, C_WHITE)
+
+    img.save(os.path.join(IMG_DIR, filename), quality=85)
+    print(f"✓ {filename}")
+
+
+# ==================== 名人图片 (100x100) ====================
+def create_person_thumb(filename, name, color1="#6B3A2A", color2="#8B5A3C"):
+    """名人缩略图"""
+    w, h = 100, 100
+    img = make_gradient(w, h, color1, color2, vertical=True)
+    draw = ImageDraw.Draw(img, 'RGBA')
+
+    font = get_font(16, bold=True)
+    if len(name) <= 3:
+        # 竖向排列
+        for i, ch in enumerate(name):
+            draw_centered_text(draw, ch, 10 + i * 30, w, get_font(18, bold=True), C_GOLD)
+    else:
+        draw_centered_text(draw, name[:2], 28, w, font, C_GOLD)
+        draw_centered_text(draw, name[2:], 52, w, font, C_GOLD)
+
+    img.save(os.path.join(IMG_DIR, filename), quality=85)
+    print(f"✓ {filename}")
+
+
+# ==================== Logo (158x39) ====================
+def create_logo():
+    """网站Logo"""
+    w, h = 158, 39
+    img = Image.new('RGBA', (w, h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(img)
+
+    font = get_font(18, bold=True)
+    # Logo图标（红色圆）
+    draw.ellipse([5, 5, 35, 35], fill=hex_to_rgb(C_RED))
+    draw.text((12, 9), "食", font=get_font(16, bold=True), fill=hex_to_rgb(C_GOLD))
+    # 文字
+    draw.text((42, 9), "中华美食", font=font, fill=hex_to_rgb(C_DARK_RED))
+
+    # JPEG不支持RGBA，先转RGB再保存
+    img_rgb = img.convert('RGB')
+    img_rgb.save(os.path.join(IMG_DIR, "logo.jpg"), quality=90)
+    print("✓ logo.jpg")
+
+
+# ==================== Map (100x100) PNG ====================
+def create_map():
+    """饮食地图"""
+    w, h = 100, 100
+    img = Image.new('RGBA', (w, h), hex_to_rgb(C_WARM_BG))
+    draw = ImageDraw.Draw(img)
+
+    font = get_font(14, bold=True)
+    # 简化"地图"
+    draw.rectangle([15, 15, 85, 85], outline=hex_to_rgb(C_RED), width=2)
+    draw.text((23, 28), "川", font=get_font(12, bold=True), fill=hex_to_rgb(C_RED))
+    draw.text((50, 20), "鲁", font=get_font(10), fill=hex_to_rgb(C_DARK_RED))
+    draw.text((70, 35), "苏", font=get_font(10), fill=hex_to_rgb(C_DARK_RED))
+    draw.text((55, 45), "浙", font=get_font(10), fill=hex_to_rgb(C_DARK_RED))
+    draw.text((25, 50), "粤", font=get_font(10), fill=hex_to_rgb(C_DARK_RED))
+    draw.text((40, 60), "闽", font=get_font(10), fill=hex_to_rgb(C_DARK_RED))
+    draw.text((60, 65), "湘", font=get_font(10), fill=hex_to_rgb(C_DARK_RED))
+    draw.text((75, 55), "徽", font=get_font(10), fill=hex_to_rgb(C_DARK_RED))
+
+    img.save(os.path.join(IMG_DIR, "map.png"), quality=85)
+    print("✓ map.png")
+
+
+# ==================== 主函数 ====================
+def main():
+    print("开始生成中华美食主题图片...\n")
+
+    # Banner
+    create_banner()
+
+    # 分隔条
+    create_separator("bannercity.jpg", "中华美食 · 博大精深")
+    create_separator("bannercity1.jpg", "美食名家 · 饮食文化", "#8B3A3A", "#C41E1E")
+    create_separator("banner22.jpg", "八大菜系 · 地方小吃", "#6B2020", "#A52020")
+
+    # 8道名菜图片（轮播用）
+    foods = [
+        ("wuzhen.jpg",     "北京烤鸭", "色泽红润 · 外脆里嫩 · 天下美味", "#8B2500", "#CD3700"),
+        ("xihu.jpg",       "四川火锅", "麻辣鲜香 · 热气腾腾 · 欢聚首选", "#CC3300", "#E8450A"),
+        ("putuoshan.jpg",  "小笼包",   "皮薄馅大 · 汤汁鲜美 · 江南名点", "#D4782F", "#E8985A"),
+        ("xikou.jpg",      "东坡肉",   "肥而不腻 · 酥烂如腐 · 千年传承", "#8B3A0E", "#B8551E"),
+        ("qiandaohu.jpg",  "麻婆豆腐", "麻辣烫鲜 · 香酥嫩滑 · 川菜经典", "#A02820", "#D4332A"),
+        ("双溶洞.jpg",     "饺子",     "皮薄馅嫩 · 团圆吉祥 · 年味必备", "#BD7A2A", "#D4983A"),
+        ("nanxun.jpg",     "兰州拉面", "一清二白 · 三红四绿 · 筋道爽滑", "#C47830", "#E09848"),
+        ("dongqianhu.jpg", "宫保鸡丁", "鲜辣可口 · 花生酥脆 · 红遍南北", "#B84020", "#D45530"),
+    ]
+    for fname, title, sub, c1, c2 in foods:
+        create_food_image(fname, title, sub, c1, c2)
+
+    # 缩略图 (100x100)
+    create_thumbnail("pic_4.jpg", "中华美食", C_RED, C_DARK_RED)
+    create_thumbnail("王守仁.jpg", "苏东坡", "#8B5A3C", "#6B3A2A")
+    create_thumbnail("于谦.jpg", "袁枚", "#7B4A2C", "#5B2A1A")
+    create_thumbnail("meilihangzhou.jpg", "川菜", "#CC3300", "#A02820")
+    create_thumbnail("tianyige.jpg", "粤菜", "#C47830", "#A06028")
+
+    # 历史缩略图 (150x82)
+    create_history_thumb("history1.jpg", "先秦时期")
+    create_history_thumb("history3.jpg", "宋元明清")
+    create_history_thumb("history2.png", "秦汉隋唐")
+
+    # Logo
+    create_logo()
+
+    # Map
+    create_map()
+
+    print(f"\n✅ 所有图片已生成到: {IMG_DIR}")
+    print(f"   共 {len(os.listdir(IMG_DIR))} 个文件")
+
+
+if __name__ == "__main__":
+    main()

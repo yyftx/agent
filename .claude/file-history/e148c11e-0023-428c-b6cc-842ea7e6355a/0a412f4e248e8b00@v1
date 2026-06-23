@@ -1,0 +1,33 @@
+{
+  "enabledPlugins": {
+    "skill-creator@claude-plugins-official": true
+  },
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-beed37c3eb1b481a9e8fddd71991d9b1",
+    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "deepseek-v4-pro[1M]",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL_NAME": "deepseek-v4-pro",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1M]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME": "deepseek-v4-pro",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro[1M]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME": "deepseek-v4-pro",
+    "ANTHROPIC_MODEL": "deepseek-v4-pro",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max"
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-plugins": {
+      "source": {
+        "repo": "anthropics/claude-code",
+        "source": "github"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "repo": "anthropics/claude-plugins-official",
+        "source": "github"
+      }
+    }
+  },
+  "includeCoAuthoredBy": false
+}

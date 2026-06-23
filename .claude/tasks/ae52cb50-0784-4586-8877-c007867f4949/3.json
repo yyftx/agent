@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "系统文件检查和修复",
+  "description": "运行 DISM 和 SFC 检查和修复系统文件完整性",
+  "activeForm": "检查系统文件",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

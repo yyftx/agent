@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "检查磁盘空间和健康状况",
+  "description": "查看各分区使用率、磁盘健康状态",
+  "activeForm": "检查磁盘状态",
+  "status": "in_progress",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,101 @@
+@charset "utf-8";
+/* CSS Document */
+body {margin:0 auto;background-color:#f7fbff; }
+div,td {font-size: 14px;line-height: 20px;font-family: Arial, Helvetica,"宋体", sans-serif;}
+div,form,img,ul,ol,li,dl,dt,dd {margin:0px; padding:0px; border:0px; list-style:none; }
+p,h1,h2,h3,h4,h5,h6 {margin:0px; padding:0px; font-size:12px; font-weight:normal;}
+INPUT {	FONT-SIZE: 14px; FONT-FAMILY: Arial, Helvetica, sans-serif;;padding:1px}
+SELECT {FONT-SIZE: 14px; FONT-FAMILY:Arial, Helvetica, sans-serif;}
+ul,li {LIST-STYLE-TYPE: none;}
+textarea {FONT-SIZE: 14px;padding:4px}
+.clear {clear:both}
+
+/* ----------------- box-------------- */
+.box {width:1000px; margin:0px auto;clear:both;}
+.mar_top { margin-top:10px;}
+/* ----------网页顶部Logo和用户登录注册等------ */
+.login { padding:10px; background-color:#fff; float:right; width:390px;}
+.login ul li { font-size:12px; color:#6d6d6d;float:left; line-height:24px; padding-right:15px;}
+.login ul li span { font-size:12px; color:#fda701; font-weight:bold; text-align:center;}
+.login ul li a:link,a:hover,a:visited{ font-size:12px; color:#fda701; font-weight:bold; text-decoration:none; padding-top:3px;}
+.login input{width:60px;}
+/* -------------- 网页Banner----------- */
+.top {height:150px; border-top:1px #24A9C6 solid;}
+/* -------------- 网页导航-------------- */
+.nav_bg { background-color:#055f98;}
+.nav { padding:0px;width:1000px; margin:auto; }
+.nav ul li { float:left; line-height:50px; padding-right:30px;}
+.nav ul li a:link, 
+.nav ul li a:visited { font-size:16px; color:#fff;text-decoration:none;font-family:"Arial Black", Gadget, sans-serif,"微软雅黑"; font-weight:bold;}
+.nav ul li a:hover { font-size:16px; color:#fda701;text-decoration: underline;font-family:"Arial Black", Gadget, sans-serif,"微软雅黑";  font-weight:bold;}
+
+/*图片浏览部分*/
+.left {width:425px;float:left; padding-top:10px;}
+.left {width:425px;float:left; padding-top:10px;}
+#photos {visibility: hidden;} /* --注意：jQuery函数添加后，添加此项-- */
+.galleryview {background: rgb(221, 221, 221); padding: 0px; border: 0px solid rgb(170, 170, 170); border-image: none;box-shadow: 6px 6px 5px #ccc;}
+.loader {background: url("loader.gif") no-repeat center rgb(221, 221, 221);}
+.panel img{ width:600px; position:absolute; left:-90px;}
+.panel .panel-overlay {padding: 0px 1em; height: 60px;}
+.panel .overlay-background {padding: 0px 1em; height: 60px;}
+.panel .overlay-background {background: rgb(34, 34, 34);}
+.panel .panel-overlay {	color: white; font-size: 0.7em;}
+.panel .panel-overlay a {color: white; text-decoration: underline;}
+.filmstrip {margin: 5px;}
+.frame .img_wrap {border: 0px solid rgb(170, 170, 170); border-image: none;}
+.frame.current .img_wrap {border-color: rgb(0, 0, 0);}
+.frame img {border: currentColor; border-image: none;}
+.frame .caption {text-align: center; color: rgb(136, 136, 136); font-size: 11px;}
+.frame.current .caption {color: rgb(0, 0, 0);}
+.pointer {border-color: rgb(0, 0, 0);}
+.filmstrip img{width:50px; height:50px;}
+.galleryview {background: rgb(221, 221, 221); padding: 0px; border: 0px solid rgb(170, 170, 170); border-image: none;box-shadow: 6px 6px 5px #ccc;}
+.loader {background: url("loader.gif") no-repeat center rgb(221, 221, 221);}
+.panel img{ width:600px; position:absolute; left:-90px;}
+.panel .panel-overlay {padding: 0px 1em; height: 60px;}
+.panel .overlay-background {padding: 0px 1em; height: 60px;}
+.panel .overlay-background {background: rgb(34, 34, 34);}
+.panel .panel-overlay {	color: white; font-size: 0.7em;}
+.panel .panel-overlay a {color: white; text-decoration: underline;}
+.filmstrip {margin: 5px;}
+.frame .img_wrap {border: 0px solid rgb(170, 170, 170); border-image: none;}
+.frame.current .img_wrap {border-color: rgb(0, 0, 0);}
+.frame img {border: currentColor; border-image: none;}
+.frame .caption {text-align: center; color: rgb(136, 136, 136); font-size: 11px;}
+.frame.current .caption {color: rgb(0, 0, 0);}
+.pointer {border-color: rgb(0, 0, 0);}
+.filmstrip img{width:50px; height:50px;}
+/*最新动态列表*/
+.right {width:560px; float:right; padding-top:10px;}
+.sub_box { margin-top:5px;clear:both;}
+.title { height:30px; border-bottom:1px #197395 solid;}
+.title ul li { line-height:30px; text-align:right;}
+.title ul li  a:link,
+.title ul li  a:visited {  font-size:14px;font-weight:bold; color:#8c0001; text-decoration:none;}
+.title ul li  a:hover { font-size:14px;font-weight:bold; color:#fda701; text-decoration:none;}
+.title ul li span { float:left;}
+.title ul li span a:link,
+.title ul li span a:visited { font-size:16px; color:#000;font-family:"Arial Black", Gadget, sans-serif,"微软雅黑";}
+.title ul li span a:hover { font-size:16px; color:#fda701; font-family:"Arial Black", Gadget, sans-serif,"微软雅黑";}
+.news_list { margin:0px;}
+.news_list ul li { border-bottom:1px #ececec dashed; background:url(../images/index_img/list_dot.jpg); background-position:left; background-repeat:no-repeat; padding:5px 0px 5px 10px; text-align:right; font-size:12px; color:#7a7a7a; clear:both;}
+.news_list ul li span { float:left;}
+.news_list ul li span a:link, 
+.news_list ul li span a:visited {font-size:13px; color:#000;font-weight: normal; text-decoration:none; }
+.news_list ul li span a:hover {font-size:13px; color:#fda701; font-weight:normal; text-decoration: none; }
+/*各模块分类信息列表*/
+/*左侧各模块分类信息列表*/
+.pho_info { clear:both; border-bottom:1px #CCC dashed; padding:5px 5px 5px 0px;}
+.pho_info_left { float:left; border:1px solid #CCC; width:100px; height:100px; padding:5px; }
+.pho_info_right { width:285px; float:left; padding:0px 0px 5px 10px; }
+.pho_info_right ul li   { font-size:12px; color:#7a7a7a; line-height:22px; }
+.pho_info_right ul li span a:link,
+.pho_info_right ul li span a:visited { font-size:12px; color:#015ebe; text-decoration:none;  }
+.pho_info_right ul li span a:hover { font-size:12px; color:#fda701;  text-decoration: underline;font-weight:bold; }
+/*右侧各模块分类信息列表*/
+.infoshows { margin:10px 0px 10px 0px;}
+.infoshows ul { float:left; margin-left:25px;}
+.infoshows ul li { text-align:center; line-height:25px;}
+.infoshows ul li a:link,
+.infoshows ul li a:visited { font-size:12px; color:#06C; text-decoration:none; }
+.infoshows ul li a:hover { color:#F00; text-decoration:underline;}

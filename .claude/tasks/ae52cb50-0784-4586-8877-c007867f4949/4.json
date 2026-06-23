@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "检查启动项和后台服务",
+  "description": "检查不必要的启动项和后台进程",
+  "activeForm": "检查启动项",
+  "status": "pending",
+  "blocks": [],
+  "blockedBy": []
+}

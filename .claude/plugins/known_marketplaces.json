@@ -1,0 +1,18 @@
+{
+  "claude-code-plugins": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-code"
+    },
+    "installLocation": "C:\\Users\\ASUS\\.claude\\plugins\\marketplaces\\claude-code-plugins",
+    "lastUpdated": "2026-06-17T13:18:27.906Z"
+  },
+  "claude-plugins-official": {
+    "source": {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    },
+    "installLocation": "C:\\Users\\ASUS\\.claude\\plugins\\marketplaces\\claude-plugins-official",
+    "lastUpdated": "2026-06-17T13:23:07.374Z"
+  }
+}

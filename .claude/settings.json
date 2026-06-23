@@ -1,0 +1,34 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-beed37c3eb1b481a9e8fddd71991d9b1",
+    "ANTHROPIC_BASE_URL": "https://api.deepseek.com/anthropic",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL": "deepseek-v4-pro[1M]",
+    "ANTHROPIC_DEFAULT_FABLE_MODEL_NAME": "deepseek-v4-pro",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "deepseek-v4-flash",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "deepseek-v4-pro[1M]",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL_NAME": "deepseek-v4-pro",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "deepseek-v4-pro[1M]",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL_NAME": "deepseek-v4-pro",
+    "ANTHROPIC_MODEL": "deepseek-v4-pro",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": [
+      "PowerShell($url = \"https://ghproxy.net/https://github.com/coder/code-server/releases/download/v4.125.0/code-server-4.125.0-win32-x64-standalone.zip\"; $zipPath = \"$env:TEMP\\\\code-server.zip\"; Write-Output \"Trying mirror download...\"; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri $url -OutFile $zipPath -TimeoutSec 60; Write-Output \"Downloaded OK\")",
+      "PowerShell(npm install -g code-server --ignore-scripts 2>&1)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); code-server --version 2>&1)",
+      "PowerShell(Get-WindowsCapability -Online)",
+      "Read(//c/Windows/System32/OpenSSH/**)",
+      "Read(//c/Users/ASUS/AppData/Roaming/npm/node_modules/code-server/**)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); code-server \"c:\\\\Users\\\\ASUS\\\\OneDrive\\\\Desktop\\\\git-demo\" --bind-addr 0.0.0.0:8088 --auth none)",
+      "PowerShell(New-NetFirewallRule -DisplayName \"code-server\" -Direction Inbound -Protocol TCP -LocalPort 8088 -Action Allow -Profile Private 2>&1)",
+      "PowerShell($response = Invoke-WebRequest -Uri \"http://localhost:8088\" -UseBasicParsing -TimeoutSec 5; Write-Output \"HTTP Status: $\\($response.StatusCode\\)\"; $response.Content.Substring\\(0, [Math]::Min\\(200, $response.Content.Length\\)\\))",
+      "Read(//c/Users/ASUS/OneDrive/Desktop/**)",
+      "PowerShell(py -3.13 -c \"from docx import Document; doc = Document\\(r'C:\\\\Users\\\\ASUS\\\\OneDrive\\\\Desktop\\\\6.22ָ����ѵ\\\\�������ʵ����ؽ�������.docx'\\); [print\\(p.text\\) for p in doc.paragraphs]\")"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\ASUS\\AppData\\Roaming\\npm\\node_modules\\code-server\\node_modules\\argon2"
+    ]
+  }
+}

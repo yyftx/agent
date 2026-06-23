@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "plugins": {
+    "skill-creator@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "C:\\Users\\ASUS\\.claude\\plugins\\cache\\claude-plugins-official\\skill-creator\\ccdc03c56532",
+        "version": "ccdc03c56532",
+        "installedAt": "2026-06-17T13:29:21.900Z",
+        "lastUpdated": "2026-06-17T13:29:21.900Z",
+        "gitCommitSha": "ccdc03c56532519760df6363a6eef87324470fc8"
+      }
+    ]
+  }
+}

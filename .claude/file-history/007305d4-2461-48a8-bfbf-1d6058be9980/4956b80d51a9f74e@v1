@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+body {margin:0 auto;background-color:#f7fbff; }
+div,td {font-size: 14px;line-height: 20px;font-family: Arial, Helvetica,"宋体", sans-serif;}
+div,form,img,ul,ol,li,dl,dt,dd {margin:0px; padding:0px; border:0px; list-style:none; }
+p,h1,h2,h3,h4,h5,h6 {margin:0px; padding:0px; font-size:12px; font-weight:normal;}
+INPUT {	FONT-SIZE: 14px; FONT-FAMILY: Arial, Helvetica, sans-serif;;padding:1px}
+SELECT {FONT-SIZE: 14px; FONT-FAMILY:Arial, Helvetica, sans-serif;}
+ul,li {LIST-STYLE-TYPE: none;}
+textarea {FONT-SIZE: 14px;padding:4px}
+.clear {clear:both}
+
+/* ----------------- box-------------- */
+.box {width:1000px; margin:0px auto;clear:both;}
+.mar_top { margin-top:10px;}
+/* ----------网页顶部Logo和用户登录注册等------ */
+.login { padding:10px; background-color:#fff; float:right; width:390px;}
+.login ul li { font-size:12px; color:#6d6d6d;float:left; line-height:24px; padding-right:15px;}
+.login ul li span { font-size:12px; color:#fda701; font-weight:bold; text-align:center;}
+.login ul li a:link,a:hover,a:visited{ font-size:12px; color:#fda701; font-weight:bold; text-decoration:none; padding-top:3px;}
+.login input{width:60px;}
+/* -------------- 网页Banner----------- */
+.top {  height:150px; border-top:1px #24A9C6 solid;}
+/* -------------- 网页导航-------------- */
+.nav_bg { background-color:#055f98;}
+.nav { padding:0px;width:1000px; margin:auto; }
+.nav ul li { float:left; line-height:50px; padding-right:30px;}
+.nav ul li a:link, 
+.nav ul li a:visited { font-size:16px; color:#fff;text-decoration:none;font-family:"Arial Black", Gadget, sans-serif,"微软雅黑"; font-weight:bold;}
+.nav ul li a:hover { font-size:16px; color:#fda701;text-decoration: underline;font-family:"Arial Black", Gadget, sans-serif,"微软雅黑";  font-weight:bold;}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	<title>中华美食</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+	<!------网站Logo和用户登录注册------>
+	<div class="box">注册登录
+
+	</div>
+	<!--------banner-------->
+	<div class="top">
+	 网站banner
+	</div>
+	<!------导航------>
+	<div class="nav_bg">
+	  导航
+	</div>
+	<!-----图片浏览及最新动态----->
+	<div class="box">图片浏览及最新动态
+	  <div class="left"></div>
+
+	  <div class="right"></div>
+	   <div class="clear"></div>
+	</div>
+
+	<!------------图片1--------->
+	<div class="box mar_top"><img  /></div>
+	<!------------中华美食、美食历史--------->
+	<div class="box">
+
+	  <div class="left">
+
+	  </div>
+	  <div class="right">
+
+	      </div>
+
+	      <div class="clear"></div>
+
+	</div>
+	<!--------图片2-------->
+	<div class="box mar_top"><a href="#"><img/></a></div>
+	<!--------美食名家 饮食文化-------->
+	<div class="box">
+	  <div class="left">
+
+	  </div>
+	  <div class="right">
+
+	  </div>
+	  <div class="clear"></div>
+	</div>
+
+
+	<!---------图片3--------->
+	<div class="box mar_top"><img /></div>
+	<!--------八大菜系、地方小吃-------->
+	<div class="box">
+	  <div class="left">
+
+	  </div>
+	  <div class="right">
+
+	  </div>
+	  <div class="clear"></div>
+	</div>
+	  <div class="clear"></div>
+	<!--------快速通道-------->
+	<div class="sp">
+		<div class="sp_md">快速通道</div>
+
+	</div>
+	  <div class="clear"></div>
+	<!--------foot-------->
+	<div class="foot mar_top">
+	  <div class="box">
+
+	  </div>
+	</div>
+	  <div class="clear"></div>
+	</body>
+	</html>

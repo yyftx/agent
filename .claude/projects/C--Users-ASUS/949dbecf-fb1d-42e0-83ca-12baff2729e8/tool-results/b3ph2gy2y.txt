@@ -1,0 +1,247 @@
+
+[90m│[39m
+[34m●[39m  [46m[30m[1m claude-code_2-1-179_agent [22m[39m[49m Agent detected — installing non-interactively
+[?25l[90m│[39m
+[32m◇[39m  Source: https://github.com/jimliu/baoyu-skills.git
+[?25h[?25l[90m│[39m
+[35m◒[39m  Cloning repository[999D[J[35m◐[39m  Cloning repository[999D[J[35m◓[39m  Cloning repository[999D[J[35m◑[39m  Cloning repository[999D[J[35m◒[39m  Cloning repository[999D[J[35m◐[39m  Cloning repository[999D[J[35m◓[39m  Cloning repository[999D[J[35m◑[39m  Cloning repository[999D[J[35m◒[39m  Cloning repository.[999D[J[35m◐[39m  Cloning repository.[999D[J[35m◓[39m  Cloning repository.[999D[J[35m◑[39m  Cloning repository.[999D[J[35m◒[39m  Cloning repository.[999D[J[35m◐[39m  Cloning repository.[999D[J[35m◓[39m  Cloning repository.[999D[J[35m◑[39m  Cloning repository.[999D[J[35m◒[39m  Cloning repository..[999D[J[35m◐[39m  Cloning repository..[999D[J[35m◓[39m  Cloning repository..[999D[J[35m◑[39m  Cloning repository..[999D[J[35m◒[39m  Cloning repository..[999D[J[35m◐[39m  Cloning repository..[999D[J[35m◓[39m  Cloning repository..[999D[J[35m◑[39m  Cloning repository..[999D[J[35m◒[39m  Cloning repository...[999D[J[35m◐[39m  Cloning repository...[999D[J[35m◓[39m  Cloning repository...[999D[J[35m◑[39m  Cloning repository...[999D[J[35m◒[39m  Cloning repository...[999D[J[35m◐[39m  Cloning repository...[999D[J[35m◓[39m  Cloning repository...[999D[J[35m◑[39m  Cloning repository...[999D[J[35m◒[39m  Cloning repository...[999D[J[35m◐[39m  Cloning repository[999D[J[35m◓[39m  Cloning repository[999D[J[35m◑[39m  Cloning repository[999D[J[35m◒[39m  Cloning repository[999D[J[35m◐[39m  Cloning repository[999D[J[35m◓[39m  Cloning repository[999D[J[35m◑[39m  Cloning repository[999D[J[35m◒[39m  Cloning repository[999D[J[35m◐[39m  Cloning repository.[999D[J[35m◓[39m  Cloning repository.[999D[J[35m◑[39m  Cloning repository.[999D[J[35m◒[39m  Cloning repository.[999D[J[32m◇[39m  Repository cloned
+[?25h[?25l[90m│[39m
+[999D[J[35m◒[39m  Discovering skills[999D[J[35m◐[39m  Discovering skills[999D[J[32m◇[39m  Found [32m22[39m skills
+[?25h[90m│[39m
+[34m●[39m  Installing all 22 skills
+[?25l[90m│[39m
+[999D[J[32m◇[39m  71 agents
+[?25h[90m│[39m
+[34m●[39m  Installing to: [36mClaude Code[39m, [36mOpenClaw[39m, [36mCodex[39m, [36mGitHub Copilot[39m, [36mTrae[39m, [36mTrae CN[39m
+
+[90m│[39m
+[32m◇[39m  [0mInstallation Summary[0m [90m───────────────────────────────────────────────────────────╮[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[1mBaoyu Skills[22m[2m[22m                                                                    [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-article-illustrator[39m[22m                                      [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-comic[39m[22m                                                    [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-compress-image[39m[22m                                           [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-cover-image[39m[22m                                              [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-danger-gemini-web[39m[22m                                        [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-danger-x-to-markdown[39m[22m                                     [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-diagram[39m[22m                                                  [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-electron-extract[39m[22m                                         [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-format-markdown[39m[22m                                          [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-image-gen[39m[22m                                                [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-infographic[39m[22m                                              [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-markdown-to-html[39m[22m                                         [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-post-to-wechat[39m[22m                                           [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-post-to-weibo[39m[22m                                            [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-post-to-x[39m[22m                                                [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-slide-deck[39m[22m                                               [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-translate[39m[22m                                                [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-url-to-markdown[39m[22m                                          [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-wechat-summary[39m[22m                                           [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-xhs-images[39m[22m                                               [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\baoyu-youtube-transcript[39m[22m                                       [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[1mGeneral[22m[2m[22m                                                                         [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[36m~\.agents\skills\release-skills[39m[22m                                                 [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlink →[22m[2m Claude Code, OpenClaw, Trae, Trae CN[22m                                [90m│[39m
+[90m│[39m  [2m  [33moverwrites:[39m Claude Code, Codex, GitHub Copilot, Trae, Trae CN +15 more[22m        [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m├──────────────────────────────────────────────────────────────────────────────────╯[39m
+[90m│[39m
+[32m◇[39m  [0mSecurity Risk Assessments[0m [90m─────────────────────────────────────────────────╮[39m
+[90m│[39m  [2m[22m                                                                           [90m│[39m
+[90m│[39m  [2m                            [2mGen[22m[2m               [2mSocket[22m[2m            [2mSnyk[22m[2m[22m       [90m│[39m
+[90m│[39m  [2m[36mbaoyu-article-illustrator[39m   [32mSafe[39m              [31m1 alert[39m           [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-comic[39m                 [32mSafe[39m              [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-compress-image[39m        [32mSafe[39m              [32m0 alerts[39m          [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-cover-image[39m           [32mSafe[39m              [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-danger-gemini-web[39m     [32mSafe[39m              [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-danger-x-to-markdown[39m  [33mMed Risk[39m          [31m1 alert[39m           [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-diagram[39m               [32mSafe[39m              [32m0 alerts[39m          [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-electron-extract[39m      [32mSafe[39m              [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-format-markdown[39m       [32mSafe[39m              [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-image-gen[39m             [32mSafe[39m              [32m0 alerts[39m          [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-infographic[39m           [32mSafe[39m              [32m0 alerts[39m          [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-markdown-to-html[39m      [33mMed Risk[39m          [32m0 alerts[39m          [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-post-to-wechat[39m        [32mSafe[39m              [31m1 alert[39m           [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-post-to-weibo[39m         [32mSafe[39m              [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-post-to-x[39m             [32mSafe[39m              [31m1 alert[39m           [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-slide-deck[39m            [32mSafe[39m              [32m0 alerts[39m          [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-translate[39m             [32mSafe[39m              [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-url-to-markdown[39m       [32mSafe[39m              [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-wechat-summary[39m        [32mSafe[39m              [32m0 alerts[39m          [31mHigh Risk[39m[22m  [90m│[39m
+[90m│[39m  [2m[36mbaoyu-xhs-images[39m            [32mSafe[39m              [32m0 alerts[39m          [32mLow Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mbaoyu-youtube-transcript[39m    [33mMed Risk[39m          [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[36mrelease-skills[39m              [33mMed Risk[39m          [32m0 alerts[39m          [33mMed Risk[39m[22m   [90m│[39m
+[90m│[39m  [2m[22m                                                                           [90m│[39m
+[90m│[39m  [2m[2mDetails:[22m[2m [2mhttps://skills.sh/jimliu/baoyu-skills[22m[2m[22m                             [90m│[39m
+[90m│[39m  [2m[22m                                                                           [90m│[39m
+[90m├─────────────────────────────────────────────────────────────────────────────╯[39m
+[?25l[90m│[39m
+[999D[J[35m◒[39m  Installing skills[999D[J[35m◐[39m  Installing skills[999D[J[35m◓[39m  Installing skills[999D[J[35m◑[39m  Installing skills[999D[J[35m◒[39m  Installing skills[999D[J[35m◐[39m  Installing skills[999D[J[35m◓[39m  Installing skills[999D[J[35m◑[39m  Installing skills[999D[J[35m◒[39m  Installing skills.[999D[J[35m◐[39m  Installing skills.[999D[J[35m◓[39m  Installing skills.[999D[J[35m◑[39m  Installing skills.[999D[J[35m◒[39m  Installing skills.[999D[J[35m◐[39m  Installing skills.[999D[J[35m◓[39m  Installing skills.[999D[J[35m◑[39m  Installing skills.[999D[J[35m◒[39m  Installing skills..[999D[J[35m◐[39m  Installing skills..[999D[J[35m◓[39m  Installing skills..[999D[J[35m◑[39m  Installing skills..[999D[J[35m◒[39m  Installing skills..[999D[J[35m◐[39m  Installing skills..[999D[J[35m◓[39m  Installing skills..[999D[J[35m◑[39m  Installing skills..[999D[J[35m◒[39m  Installing skills...[999D[J[35m◐[39m  Installing skills...[999D[J[35m◓[39m  Installing skills...[999D[J[35m◑[39m  Installing skills...[999D[J[35m◒[39m  Installing skills...[999D[J[35m◐[39m  Installing skills...[999D[J[35m◓[39m  Installing skills...[999D[J[35m◑[39m  Installing skills...[999D[J[35m◒[39m  Installing skills...[999D[J[35m◐[39m  Installing skills[999D[J[35m◓[39m  Installing skills[999D[J[35m◑[39m  Installing skills[999D[J[35m◒[39m  Installing skills[999D[J[35m◐[39m  Installing skills[999D[J[35m◓[39m  Installing skills[999D[J[35m◑[39m  Installing skills[999D[J[35m◒[39m  Installing skills[999D[J[35m◐[39m  Installing skills.[999D[J[35m◓[39m  Installing skills.[999D[J[35m◑[39m  Installing skills.[999D[J[35m◒[39m  Installing skills.[999D[J[35m◐[39m  Installing skills.[999D[J[35m◓[39m  Installing skills.[999D[J[35m◑[39m  Installing skills.[999D[J[35m◒[39m  Installing skills.[999D[J[35m◐[39m  Installing skills..[999D[J[35m◓[39m  Installing skills..[999D[J[35m◑[39m  Installing skills..[999D[J[35m◒[39m  Installing skills..[999D[J[35m◐[39m  Installing skills..[999D[J[35m◓[39m  Installing skills..[999D[J[35m◑[39m  Installing skills..[999D[J[35m◒[39m  Installing skills..[999D[J[35m◐[39m  Installing skills...[999D[J[35m◓[39m  Installing skills...[999D[J[35m◑[39m  Installing skills...[999D[J[35m◒[39m  Installing skills...[999D[J[35m◐[39m  Installing skills...[999D[J[35m◓[39m  Installing skills...[999D[J[35m◑[39m  Installing skills...[999D[J[35m◒[39m  Installing skills...[999D[J[35m◐[39m  Installing skills...[999D[J[35m◓[39m  Installing skills[999D[J[35m◑[39m  Installing skills[999D[J[35m◒[39m  Installing skills[999D[J[35m◐[39m  Installing skills[999D[J[35m◓[39m  Installing skills[999D[J[35m◑[39m  Installing skills[999D[J[35m◒[39m  Installing skills[999D[J[35m◐[39m  Installing skills[999D[J[35m◓[39m  Installing skills.[999D[J[35m◑[39m  Installing skills.[999D[J[35m◒[39m  Installing skills.[999D[J[35m◐[39m  Installing skills.[999D[J[35m◓[39m  Installing skills.[999D[J[35m◑[39m  Installing skills.[999D[J[35m◒[39m  Installing skills.[999D[J[35m◐[39m  Installing skills.[999D[J[35m◓[39m  Installing skills..[999D[J[35m◑[39m  Installing skills..[999D[J[35m◒[39m  Installing skills..[999D[J[35m◐[39m  Installing skills..[999D[J[35m◓[39m  Installing skills..[999D[J[35m◑[39m  Installing skills..[999D[J[35m◒[39m  Installing skills..[999D[J[35m◐[39m  Installing skills..[999D[J[35m◓[39m  Installing skills...[999D[J[35m◑[39m  Installing skills...[999D[J[35m◒[39m  Installing skills...[999D[J[35m◐[39m  Installing skills...[999D[J[35m◓[39m  Installing skills...[999D[J[35m◑[39m  Installing skills...[999D[J[35m◒[39m  Installing skills...[999D[J[35m◐[39m  Installing skills...[999D[J[35m◓[39m  Installing skills...[999D[J[35m◑[39m  Installing skills[999D[J[35m◒[39m  Installing skills[999D[J[35m◐[39m  Installing skills[999D[J[35m◓[39m  Installing skills[999D[J[35m◑[39m  Installing skills[999D[J[35m◒[39m  Installing skills[999D[J[35m◐[39m  Installing skills[999D[J[35m◓[39m  Installing skills[999D[J[35m◑[39m  Installing skills.[999D[J[32m◇[39m  Installation complete
+[?25h
+[90m│[39m
+[32m◇[39m  [0m[32mInstalled 22 skills[39m[0m [90m────────────────────────────────────────────────────────────╮[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[1mBaoyu Skills[22m[2m[22m                                                                    [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-article-illustrator[22m                                    [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-comic[22m                                                  [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-compress-image[22m                                         [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-cover-image[22m                                            [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-danger-gemini-web[22m                                      [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-danger-x-to-markdown[22m                                   [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-diagram[22m                                                [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-electron-extract[22m                                       [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-format-markdown[22m                                        [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-image-gen[22m                                              [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-infographic[22m                                            [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-markdown-to-html[22m                                       [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-post-to-wechat[22m                                         [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-post-to-weibo[22m                                          [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-post-to-x[22m                                              [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-slide-deck[22m                                             [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-translate[22m                                              [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-url-to-markdown[22m                                        [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-wechat-summary[22m                                         [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-xhs-images[22m                                             [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\baoyu-youtube-transcript[22m                                     [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m│[39m  [2m[1mGeneral[22m[2m[22m                                                                         [90m│[39m
+[90m│[39m  [2m[32m✓[39m ~\.agents\skills\release-skills[22m                                               [90m│[39m
+[90m│[39m  [2m  [32muniversal:[39m Codex, GitHub Copilot, Amp, Antigravity, Antigravity CLI +12 more[22m  [90m│[39m
+[90m│[39m  [2m  [2msymlinked:[22m[2m Claude Code, Trae, Trae CN[22m                                         [90m│[39m
+[90m│[39m  [2m[22m                                                                                [90m│[39m
+[90m├──────────────────────────────────────────────────────────────────────────────────╯[39m
+
+[90m│[39m
+[90m└[39m  [32mDone![39m[2m  Review skills before use; they run with full agent permissions.[22m
+

@@ -1,0 +1,31 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:8787"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m headroom.cli init hook ensure --profile init-git-demo-23055d38 --marker headroom-init-claude",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "C:\\Users\\ASUS\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m headroom.cli init hook ensure --profile init-git-demo-23055d38 --marker headroom-init-claude",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

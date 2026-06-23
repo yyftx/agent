@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	<title>中华美食</title>
+	<link  href="style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.4.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript"  src="js/jquery.galleryview-1.1.js"></script>
+	<script type="text/javascript"  src="js/jquery.timers-1.1.2.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#photos').galleryView({
+			panel_width: 425,
+			panel_height: 230,
+			frame_width: 50,
+			frame_height: 50
+		});
+	});
+	</script>
+	</head>
+	<body>
+	<!------网站Logo和用户登录注册------>
+	<div class="box">
+	  <div class="logo" style="float:left;"><img  src="images/logo.jpg" width="158" height="39" /></div>
+	  <div class="login">
+	    <ul>
+	      <li><span>会员登录</span></li>
+	      <li>账号：
+	        <input name="" type="text" />
+	      </li>
+	      <li>密码：
+	        <input name="" type="text" />
+	      </li>
+	      <li><a href="#">注册</a></li>
+	      <li><a href="#">登陆</a></li>
+	    </ul>
+	    <div class="clear"></div>
+	  </div>
+	  <div class="clear"></div>
+	</div>
+	<!--------banner-------->
+	<div class="top">
+	  <div class="box"><img  src="images/banner_2.jpg" width="1000" height="150" /></div>
+	</div>
+	<!------导航------>
+	<div class="nav_bg">
+	  <div class="nav">
+	    <ul>
+	      <li><a href="#">网站首页</a></li>
+	      <li><a href="#">最新动态</a></li>
+	      <li><a href="#">中华美食</a></li>
+	      <li><a href="#">美食历史</a></li>
+	      <li><a href="#">饮食文化</a></li>
+	      <li><a href="#">美食名家</a></li>
+	      <li><a href="#">八大菜系</a></li>
+	      <li><a href="#">地方小吃</a></li>
+	    </ul>
+	    <div class="clear"></div>
+	  </div>
+	  <div class="clear"></div>
+	</div>
+	<!-----图片轮播及最新动态----->
+	<div class="box">
+	  <div class="left">
+	    <div id="photos" class="galleryview">
+	      <div class="panel"> <img src="images/wuzhen.jpg" />
+	        <div class="panel-overlay">
+	          <h2>北京烤鸭</h2>
+	          <p><a href="#" target="_blank">北京烤鸭色泽红润，肉质肥而不腻，外脆里嫩，被誉为"天下美味"，是享誉世界的中华名菜。</a></p>
+	        </div>
+	      </div>
+	      <div class="panel"> <img src="images/xihu.jpg"/>
+	        <div class="panel-overlay">
+	          <h2>四川火锅</h2>
+	          <p><a href="#" target="_blank">火锅是中国独创的美食，历史悠久，以麻、辣、鲜、香著称，老少皆宜，是朋友聚餐的首选。</a></p>
+	        </div>
+	      </div>
+	      <div class="panel"> <img src="images/putuoshan.jpg" />
+	        <div class="panel-overlay">
+	          <h2>小笼包</h2>
+	          <p><a href="#" target="_blank">小笼包起源于上海南翔，皮薄馅大，汤汁鲜美，被誉为"提起像灯笼，放下像菊花"。</a></p>
+	        </div>
+	      </div>
+	      <div class="panel"> <img src="images/xikou.jpg" />
+	        <div class="panel-overlay">
+	          <h2>东坡肉</h2>
+	          <p><a href="#" target="_blank">东坡肉由北宋文豪苏东坡创制，以五花肉炖制而成，色泽红亮，肥而不腻，酥烂如豆腐。</a></p>
+	        </div>
+	      </div>
+	      <div class="panel"> <img src="images/qiandaohu.jpg"/>
+	        <div class="panel-overlay">
+	          <h2>麻婆豆腐</h2>
+	          <p><a href="#" target="_blank">麻婆豆腐是四川传统名菜，以"麻、辣、烫、鲜、香、酥、嫩"七大特色享誉海内外。</a></p>
+	        </div>
+	      </div>
+	      <div class="panel"> <img src="images/双溶洞.jpg" />
+	        <div class="panel-overlay">
+	          <h2>饺子</h2>
+	          <p><a href="#" target="_blank">饺子是中国北方传统美食，已有1800多年历史，是春节必备食品，象征着团圆和吉祥。</a></p>
+	        </div>
+	      </div>
+	      <div class="panel"> <img  src="images/nanxun.jpg" />
+	        <div class="panel-overlay">
+	          <h2>兰州拉面</h2>
+	          <p><a href="#" target="_blank">兰州拉面以"一清二白三红四绿五黄"著称，面条筋道，汤鲜味浓，是甘肃省的风味名吃。</a></p>
+	        </div>
+	      </div>
+	      <div class="panel"> <img src="images/dongqianhu.jpg" />
+	        <div class="panel-overlay">
+	          <h2>宫保鸡丁</h2>
+	          <p><a href="#" target="_blank">宫保鸡丁是川菜经典名菜，由鸡丁、花生米、辣椒等炒制而成，鲜辣可口，红遍大江南北。</a></p>
+	        </div>
+	      </div>
+	      <ul class="filmstrip">
+	        <li><img src="images/wuzhen.jpg" alt="北京烤鸭" title="" /></li>
+	        <li><img src="images/xihu.jpg" alt="四川火锅" title="" /></li>
+	        <li><img src="images/putuoshan.jpg" alt="小笼包" title="" /></li>
+	        <li><img src="images/xikou.jpg" alt="东坡肉" title="" /></li>
+	        <li><img src="images/qiandaohu.jpg" alt="麻婆豆腐" title="" /></li>
+	        <li><img src="images/双溶洞.jpg" alt="饺子" title="" /></li>
+	        <li><img src="images/nanxun.jpg"  alt="兰州拉面" title="" /></li>
+	        <li><img src="images/dongqianhu.jpg" alt="宫保鸡丁" title="" /></li>
+	      </ul>
+	    </div>
+	  </div>
+	  <div class="right">
+	    <div class="sub_box">
+	      <div class="title">
+	        <ul>
+	          <li><span><a target="_blank" href="#">最新动态</a></span><a target="_blank" href="#">more</a></li>
+	        </ul>
+	      </div>
+	      <div class="news_list" >
+	        <ul>
+	          <li><span><a href="#">2025黑珍珠餐厅指南发布，全国共有360家餐厅上榜</a></span>2025-02-18 08:28</li>
+	          <li><span><a href="#">"舌尖上的中国"第五季开播，探寻各地美食背后的故事</a></span>2025-01-08 21:38</li>
+	          <li><span><a href="#">成都获评"世界美食之都"十周年，川菜文化走向全球</a></span>2024-12-16 10:22</li>
+	          <li><span><a href="#">中国烹饪协会发布2024年度中华名菜榜</a></span>2024-12-06 22:46</li>
+	          <li><span><a href="#">淄博烧烤文化节开幕，万人齐聚共享美食盛宴</a></span>2024-11-13 10:28</li>
+	          <li><span><a href="#">顺德美食文化旅游节吸引超百万游客</a></span>2024-10-29 00:00</li>
+	          <li><span><a href="#">扬州被评为"世界美食之都"，淮扬菜再获国际认可</a></span>2024-10-12 10:09</li>
+	          <li><span><a href="#">新中式茶饮风潮席卷全国，传统与现代完美融合</a></span>2024-09-22 15:44</li>
+	        </ul>
+	        <div class="clear"></div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="clear"></div>
+	</div>
+	<!---------中华美食概览 美食历史--------->
+	<div class="box mar_top"><img src="images/bannercity.jpg" width="1000" height="100" /></div>
+	<div class="box">
+	<!---------中华美食概览开始--------->
+	  <div class="left">
+	    <div class="sub_box">
+	      <div class="title">
+	        <ul>
+	          <li><span><a href="#">中华美食</a></span><a href="#">more</a></li>
+	        </ul>
+	      </div>
+	      <div class="pho_info">
+	        <div class="pho_info_left"><a href="#"><img src="images/pic_4.jpg" width="100" height="100" /></a></div>
+	        <div class="pho_info_right">
+	          <ul>
+	            <li><span><a href="#">中华美食简介</a></span></li>
+	            <li>中华美食文化博大精深，源远流长，历经五千年的发展形成了独具特色的饮食体系。中国地大物博，各地气候、物产、风俗的差异形成了丰富多样的地方风味。</li>
+	          </ul>
+	        </div>
+	        <div class="clear"></div>
+	      </div>
+	      <div class="pho_info">
+	        <div class="pho_info_left"><a href="#"><img  src="images/map.png" width="100" height="100" /></a></div>
+	        <div class="pho_info_right">
+	          <ul>
+	            <li><span><a href="">中华饮食地图</a></span></li>
+	            <li>中国饮食可大致分为八大菜系：川、粤、鲁、苏、浙、闽、湘、徽。南米北面，东辣西酸，形成了"一方水土养一方人"的饮食格局，被誉为"世界三大烹饪王国"之一。</li>
+	          </ul>
+	        </div>
+	        <div class="clear"></div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="right">
+	    <div class="sub_box">
+	      <div class="title">
+	        <ul>
+	          <li><span><a target="_blank" href="#">美食历史</a></span><a target="_blank" href="#">more</a></li>
+	        </ul>
+	      </div>
+	      <div class="infoshows">
+	        <ul>
+	          <li><img src="images/history1.jpg" width="150" height="82" /></li>
+	          <li><a href="#">先秦时期</a></li>
+	        </ul>
+	        <ul>
+	          <li><img src="images/history2.png" width="150" height="82" /></li>
+	          <li><a href="#">秦汉到隋唐时期</a></li>
+	        </ul>
+	        <ul>
+	          <li><img src="images/history3.jpg" width="150" height="82" /></li>
+	          <li><a href="#">宋元明清时期</a></li>
+	        </ul>
+
+	        <div class="clear"></div>
+	      </div>
+	      <div class="clear"></div>
+	      <div class="news_list" >
+	        <ul>
+	          <li><span><a href="#">先秦时期，五谷为养，五畜为益，奠定了中华饮食的基础格局。</a></span></li>
+	          <li><span><a href="#">秦汉统一后，张骞出使西域引进葡萄、胡桃等食材，丰富了中餐。</a></span></li>
+	          <li><span><a href="#">唐宋时期，烹饪技法日趋成熟，炒、爆、炸等技法广泛应用。</a></span></li>
+	          <li><span><a href="#">明清时期，满汉全席的出现标志着中华美食达到了新高峰。</a></span></li>
+	        </ul>
+	        <div class="clear"></div>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="clear"></div>
+	</div>
+	<!---美食名家、 饮食文化--->
+	<div class="box mar_top"><a href="#"><img src="images/bannercity1.jpg" width="1000" height="100"/></a></div>
+	<div class="box">
+	  <div class="left">
+	    <div class="sub_box">
+	   <div class="title">
+	     <ul>
+	       <li><span><a href="#">美食名家</a></span><a href="#">more</a></li>
+	     </ul>
+	   </div>
+	   <div class="pho_info">
+	     <div class="pho_info_left"><a href="#"><img src="images/王守仁.jpg" width="100" height="100" /></a></div>
+	     <div class="pho_info_right">
+	       <ul>
+	         <li><span><a href="#">苏东坡（1037～1101）</a></span></li>
+	         <li>苏东坡，北宋著名文学家、书画家，同时也是美食家。他创制的东坡肉流传千年，另有东坡鱼、东坡饼等佳肴。他在《老饕赋》中写道："盖聚物之夭美，以养吾之老饕"，堪称千古吃货。</li>
+	       </ul>
+	     </div>
+	     <div class="clear"></div>
+	   </div>
+	   <div class="pho_info">
+	     <div class="pho_info_left"><a href="#"><img src="images/于谦.jpg" width="100" height="100" /></a></div>
+	     <div class="pho_info_right">
+	       <ul>
+	         <li><span><a href="#">袁枚（1716—1797）</a></span></li>
+	         <li>袁枚，清代诗人、散文家，更是著名的美食理论家。他所著的《随园食单》是中国古代饮食文化的集大成之作，详细记录了300多种南北菜肴的制作方法，被誉为"中国古代烹饪圣经"。</li>
+	       </ul>
+	     </div>
+	     <div class="clear"></div>
+	   </div>
+	   </div>
+	  </div>
+	  <div class="right">
+	  <div class="sub_box">
+	   <div class="title">
+	     <ul>
+	       <li><span><a target="_blank" href="#">饮食文化</a></span><a target="_blank" href="#">more</a></li>
+	     </ul>
+	   </div>
+	   <div class="clear"></div>
+	   <div class="news_list" >
+	        <ul>
+	          <li><span><a href="#">中华饮食讲究"色、香、味、形、器"五位一体的和谐统一</a></span>2024-10-17 17:06:00</li>
+	          <li><span><a href="#">"民以食为天"：饮食在中国文化中的核心地位</a></span>2024-09-18 15:26:00</li>
+	          <li><span><a href="#">中国传统节日饮食习俗：春节饺子、元宵汤圆、端午粽子</a></span>2024-08-04 17:07:00</li>
+	          <li><span><a href="#">"药食同源"理念：中医与中华饮食的完美结合</a></span>2024-07-07 13:51:00</li>
+	          <li><span><a href="#">中国筷子文化：一双筷子蕴含的千年智慧</a></span>2024-06-07 14:19:00</li>
+	          <li><span><a href="#">茶文化：从神农尝百草到功夫茶的艺术</a></span>2024-05-24 12:53:00</li>
+	          <li><span><a href="#">酒文化：无酒不成席，千年酿酒技艺的传承</a></span>2024-04-25 06:44:00</li>
+	          <li><span><a href="#">满汉全席：中国古代宫廷饮食的巅峰之作</a></span>2024-03-25 06:44:00</li>
+
+	        </ul>
+	        <div class="clear"></div>
+	      </div>
+	   </div>
+	  </div>
+	  <div class="clear"></div>
+	</div>
+
+
+	<!---------八大菜系、地方小吃--------->
+	<div class="box mar_top"><img src="images/banner22.jpg" width="1000" height="100" /></div>
+	<div class="box">
+	  <div class="left">
+	    <div class="sub_box">
+	   <div class="title">
+	     <ul>
+	       <li><span><a href="#">八大菜系</a></span><a href="#">more</a></li>
+	     </ul>
+	   </div>
+	   <div class="pho_info">
+	     <div class="pho_info_left"><a href="#"><img src="images/meilihangzhou.jpg" width="100" height="100" /></a></div>
+	     <div class="pho_info_right">
+	       <ul>
+	         <li><span><a href="#">川菜 — 麻辣鲜香</a></span></li>
+	         <li>川菜是中国八大菜系之一，以麻辣著称，代表菜有麻婆豆腐、宫保鸡丁、水煮鱼、回锅肉等。川菜讲究"一菜一格，百菜百味"，味型丰富多变，有"食在中国，味在四川"的美誉。<br></li>
+	       </ul>
+	     </div>
+	     <div class="clear"></div>
+	   </div>
+	   <div class="pho_info">
+	     <div class="pho_info_left"><a href="#"><img src="images/tianyige.jpg" width="100" height="100" /></a></div>
+	     <div class="pho_info_right">
+	       <ul>
+	         <li><span><a href="#">粤菜 — 清鲜淡雅</a></span></li>
+	         <li>粤菜即广东菜，以清淡、鲜美、精致著称，讲究原汁原味。著名菜品有白切鸡、蜜汁叉烧、清蒸石斑鱼等。广东人"食在广州"的说法流传已久，早茶文化更是粤菜的一大特色。</li>
+	       </ul>
+	     </div>
+	     <div class="clear"></div>
+	   </div>
+	   </div>
+	  </div>
+	  <div class="right">
+	  <div class="sub_box">
+	   <div class="title">
+	     <ul>
+	       <li><span><a target="_blank" href="#">地方小吃</a></span><a target="_blank" href="#">more</a></li>
+	     </ul>
+	   </div>
+	   <div class="news_list" >
+	        <ul>
+	          <li><span><a href="#">【北京炸酱面】老北京传统面食，由炸酱、菜码拌面而成，酱香浓郁。</a></span>2024-08-25</li>
+	          <li><span><a href="#">【天津狗不理包子】天津传统名吃，皮薄馅大，十八个褶花匀称美观。</a></span>2024-08-24</li>
+	          <li><span><a href="#">【西安肉夹馍】腊汁肉配白吉馍，肉香馍酥，被称为"中国的汉堡"。</a></span>2024-08-16</li>
+	          <li><span><a href="#">【重庆酸辣粉】以红薯粉为主料，酸辣开胃，是重庆街头最受欢迎的小吃。</a></span>2024-08-14</li>
+	          <li><span><a href="#">【长沙臭豆腐】闻着臭吃着香，外酥里嫩，是湖南长沙最著名的小吃之一。</a></span>2024-08-12</li>
+	          <li><span><a href="#">【武汉热干面】武汉人过早首选，面条筋道，芝麻酱香浓。</a></span>2024-07-27</li>
+	          <li><span><a href="#">【桂林米粉】以卤水为灵魂，米粉洁白爽滑，是广西桂林的标志性美食。</a></span>2024-07-05</li>
+	          <li><span><a href="#">【新疆烤羊肉串】选用优质羊肉，孜然调味，炭火烤制，香气四溢。</a></span>2024-06-11</li>
+	        </ul>
+	        <div class="clear"></div>
+	      </div>
+	   </div>
+	  </div>
+	  <div class="clear"></div>
+	</div>
+
+	</body>
+	</html>

@@ -1,0 +1,41 @@
+{
+  "jobs": 4,
+  "tasks": [
+    {
+      "id": "01",
+      "promptFiles": ["prompts/01-slide-cover.md"],
+      "image": "01-slide-cover.png",
+      "provider": "zai",
+      "model": "cogview-4-250304",
+      "ar": "16:9",
+      "quality": "normal"
+    },
+    {
+      "id": "03",
+      "promptFiles": ["prompts/03-slide-agent-team.md"],
+      "image": "03-slide-agent-team.png",
+      "provider": "zai",
+      "model": "cogview-4-250304",
+      "ar": "16:9",
+      "quality": "normal"
+    },
+    {
+      "id": "04",
+      "promptFiles": ["prompts/04-slide-agents-detail-1.md"],
+      "image": "04-slide-agents-detail-1.png",
+      "provider": "zai",
+      "model": "cogview-4-250304",
+      "ar": "16:9",
+      "quality": "normal"
+    },
+    {
+      "id": "09",
+      "promptFiles": ["prompts/09-slide-reflection.md"],
+      "image": "09-slide-reflection.png",
+      "provider": "zai",
+      "model": "cogview-4-250304",
+      "ar": "16:9",
+      "quality": "normal"
+    }
+  ]
+}

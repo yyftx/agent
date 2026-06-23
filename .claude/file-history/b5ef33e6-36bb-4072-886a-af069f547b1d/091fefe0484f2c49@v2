@@ -1,0 +1,411 @@
+# -*- coding: utf-8 -*-
+"""Generate key-points Word document from training transcript"""
+from docx import Document
+from docx.shared import Inches, Pt, Cm, RGBColor
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.oxml.ns import qn
+
+doc = Document()
+
+# Page setup
+for section in doc.sections:
+    section.top_margin = Cm(2)
+    section.bottom_margin = Cm(2)
+    section.left_margin = Cm(2.5)
+    section.right_margin = Cm(2.5)
+
+style = doc.styles['Normal']
+style.font.size = Pt(11)
+style.font.name = '微软雅黑'
+style.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+style.paragraph_format.space_after = Pt(6)
+style.paragraph_format.line_spacing = 1.35
+
+
+def add_heading_styled(text, level):
+    h = doc.add_heading(text, level=level)
+    for run in h.runs:
+        run.font.name = '微软雅黑'
+        run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    return h
+
+
+def add_bold_para(text):
+    p = doc.add_paragraph()
+    run = p.add_run(text)
+    run.bold = True
+    run.font.size = Pt(11)
+    run.font.name = '微软雅黑'
+    run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    return p
+
+
+def add_para(text):
+    p = doc.add_paragraph()
+    run = p.add_run(text)
+    run.font.size = Pt(11)
+    run.font.name = '微软雅黑'
+    run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    return p
+
+
+def add_bullet(text):
+    p = doc.add_paragraph(style='List Bullet')
+    p.clear()
+    run = p.add_run(text)
+    run.font.size = Pt(10.5)
+    run.font.name = '微软雅黑'
+    run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    return p
+
+
+def add_table(headers, rows):
+    table = doc.add_table(rows=1 + len(rows), cols=len(headers))
+    table.style = 'Light Grid Accent 1'
+    for i, h in enumerate(headers):
+        cell = table.rows[0].cells[i]
+        cell.text = h
+        for p in cell.paragraphs:
+            for run in p.runs:
+                run.bold = True
+                run.font.size = Pt(9.5)
+                run.font.name = '微软雅黑'
+                run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    for r, row in enumerate(rows):
+        for c, val in enumerate(row):
+            cell = table.rows[r + 1].cells[c]
+            cell.text = str(val)
+            for p in cell.paragraphs:
+                for run in p.runs:
+                    run.font.size = Pt(9.5)
+                    run.font.name = '微软雅黑'
+                    run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    doc.add_paragraph()
+    return table
+
+
+def add_key(text):
+    p = doc.add_paragraph()
+    p.paragraph_format.left_indent = Cm(0.5)
+    run = p.add_run('[核心] ' + text)
+    run.font.size = Pt(11)
+    run.font.name = '微软雅黑'
+    run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    run.bold = True
+    return p
+
+
+def add_warn(text):
+    p = doc.add_paragraph()
+    p.paragraph_format.left_indent = Cm(0.5)
+    run = p.add_run('[注意] ' + text)
+    run.font.size = Pt(11)
+    run.font.name = '微软雅黑'
+    run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+    return p
+
+
+# ======================
+# COVER
+# ======================
+p = doc.add_paragraph()
+p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+run = p.add_run('暑期社会实践相关交流分享')
+run.bold = True
+run.font.size = Pt(22)
+run.font.name = '微软雅黑'
+run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+
+p = doc.add_paragraph()
+p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+run = p.add_run('重点提炼与行动指南')
+run.font.size = Pt(14)
+run.font.name = '微软雅黑'
+run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+run.font.color.rgb = RGBColor(0, 102, 153)
+
+p = doc.add_paragraph()
+p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+run = p.add_run('张豪芬老师（浙江工业大学）内部培训 | 2026年6月22日整理')
+run.font.size = Pt(9.5)
+run.font.name = '微软雅黑'
+run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+run.font.color.rgb = RGBColor(128, 128, 128)
+
+doc.add_page_break()
+
+# ======================
+# 1. TWO TRACKS
+# ======================
+add_heading_styled('一、暑期社会实践的两条赛道', 1)
+
+add_para('当前暑期社会实践实质上分为两大类型，评审标准截然不同：')
+
+add_table(
+    ['维度', '赛道一：传统社会实践', '赛道二：大挑孵化社会实践'],
+    [
+        ['核心定位', '以实践活动为主线', '以哲学社会科学调查报告为主线'],
+        ['评审渊源', '脱胎于已取消的"红色专项赛"', '脱胎于挑战杯主体赛文科作品评审'],
+        ['报告形态', '社会实践总结报告', '哲学社会科学调研报告'],
+        ['核心要求', '实践效果 + 媒体报道 + 批示', '学术含量 + 对策建议 + 落地应用'],
+        ['获奖难度', '套路成熟但竞争白热化', '门槛更高但差异化空间大'],
+    ]
+)
+
+add_key('两条赛道不能混着写！传统赛道以"活动"为轴，大挑赛道以"调研主题"为轴。写反了就输了。')
+
+# ======================
+# 2. TRADITIONAL
+# ======================
+add_heading_styled('二、传统社会实践赛道：四步公式', 1)
+
+p = doc.add_paragraph()
+p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p.paragraph_format.space_before = Pt(10)
+p.paragraph_format.space_after = Pt(10)
+run = p.add_run('匹配对方需求 → 戴大帽子 → 搞有效益的活动 → 提前设置佐证材料')
+run.bold = True
+run.font.size = Pt(12)
+run.font.name = '微软雅黑'
+run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+run.font.color.rgb = RGBColor(0, 102, 153)
+
+add_heading_styled('2.1 匹配政府/基层需求（最被忽视的第一步）', 2)
+add_bullet('主动跑基层办公室"坐40分钟"，问清三件事：')
+add_bullet('  a) 你们平常考核什么？（有大量隐性考核指标）')
+add_bullet('  b) 你们有没有日常联系的媒体资源？')
+add_bullet('  c) 今年暑假这几个月，你们重点工作方向是什么？')
+add_key('核心洞察：基层有"隐性考核指标"需要完成。你帮他完成 → 他帮你搞定媒体、盖章、批示。这是互利，不是求人。')
+add_warn('错误做法：自己闭门想方案 / 只跟村民聊。村委没资源给你，要找镇/街道/县一级。')
+
+add_heading_styled('2.2 戴一顶"大帽子"', 2)
+add_bullet('提炼有较高社会价值利益的"核心思想"或"核心内容"')
+add_bullet('现在的社会实践已脱离"做了就好"的年代——谁的包装都很好，你的包装差别在哪里？')
+add_bullet('帽子来源：学习强国近半年朗读版、中宣部解读文章、时政热点')
+add_bullet('示范：不要只喊"乡村振兴"——要具体到"十五规划中三区25线的某个具体点位"')
+
+add_heading_styled('2.3 搞一个"有效益"的活动', 2)
+add_para('搞活动本身不难，搞到"有效益"的活动才难。')
+
+add_bold_para('"有效益"的两种类型：')
+add_bullet('社会价值效益：规划方案被政府采纳、内容列入年度/十五/四年工作计划')
+add_bullet('经济价值效益：直播带货产生销售数据、农户增收（有截图佐证）')
+
+add_table(
+    ['', '错误做法', '正确做法'],
+    [
+        ['规模', '播两场就收工', '持续3-6个月，每周/每月跟进'],
+        ['数据', '不记录', '每场记录销量截图、收入变化'],
+        ['佐证', '没有', '村委会盖章证明 + 第三方数据'],
+        ['成果', '只是"做过了"', '月销1000元→10000元，完整数据链'],
+    ]
+)
+
+add_key('盖章时机：在现场直播时请村委配合盖章——村民高兴。干完了回来再求人盖章，怎么好意思？')
+
+add_heading_styled('2.4 提前设置佐证材料', 2)
+add_bold_para('村委会/政府证明的黄金模板四要素：')
+add_bullet('1. 学校名字 + 学生名字（学生必须排第一）')
+add_bullet('2. 团队做了什么事（具体、可验证）')
+add_bullet('3. 产生了什么量化效果（必须带数字）')
+add_bullet('4. 盖公章')
+
+add_bold_para('佐证材料互证链条：')
+p = doc.add_paragraph()
+p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+run = p.add_run('村委会盖章 → 媒体愿意报道（政府已背书）→ 更高级别批示/反馈')
+run.bold = True
+run.font.size = Pt(11)
+run.font.name = '微软雅黑'
+run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+
+# ======================
+# 3. CHALLENGE CUP
+# ======================
+add_heading_styled('三、大挑导向社会实践赛道：六步法', 1)
+
+add_warn('最大误区：以"活动时间线"来写报告。正确做法是以"调研主题"为轴来组织一切。')
+
+add_heading_styled('3.1 第一步：出发前完成80%的准备工作', 2)
+add_para('在出队实践之前，以下七件事必须全部完成：')
+
+add_table(
+    ['序号', '必须完成的事项', '大多数团队现状'],
+    [
+        ['1', '确定调研主题（有帽子、缩小到具体点位）', '没做，先有活动再硬凑主题'],
+        ['2', '完成文献查阅', '没做'],
+        ['3', '列出一级标题+二级标题目录', '没做'],
+        ['4', '预设调研结论', '没做，想调研完再总结'],
+        ['5', '设计调研样本（数量、构成、可获取性）', '没做，闭眼去调研'],
+        ['6', '设计落地活动（匹配对策建议）', '没想'],
+        ['7', '制作佐证材料模板', '没一个团队做了'],
+    ]
+)
+
+add_key('核心方法论是"倒过来"：先预设结论 → 再设计调研方案和实践活动。科学上不对，评审上对。')
+
+add_heading_styled('3.2 第二步：选赛道——五大方向', 2)
+add_table(
+    ['方向', '竞争程度', '策略'],
+    [
+        ['经济', '蓝海（人少）', '优先考虑'],
+        ['政治', '蓝海（人少）', '优先考虑'],
+        ['文化', '红海（人极多）', '慎入，需强差异化'],
+        ['社会', '红海（人多）', '慎入'],
+        ['生态文明', '红海（人多）', '慎入'],
+    ]
+)
+
+add_heading_styled('3.3 第三步：选题——三个来源 + 一个技法', 2)
+add_bold_para('最佳选题来源：')
+add_bullet('1. 学习强国App → 近半年朗读版 → 逐篇翻 → 获取大量启发')
+add_bullet('2. 重大时间节点 → 如105周年、15规划 → 选具体切入角')
+add_bullet('3. 省级政策文件 → 15规划具体点位 → 缩小再缩小')
+
+add_bold_para('"新瓶装旧酒"技法：')
+add_bullet('旧选题："外来务工人员研究" → 烂掉了')
+add_bullet('新角度："老年外来打工者" → 缩小群体 → 全新切入点 → 框架差不多但听感完全不同')
+
+add_heading_styled('3.4 第四步：标题——定生死', 2)
+add_key('90%的评委是"标题党"。从大标题看到二级标题，先打基本分，再看内容。标题决定了作品在什么层次。')
+
+add_table(
+    ['', '死路', '生路'],
+    [
+        ['大标题', '平淡无奇，范式化', '抓人眼球（用典、诗意、情怀感）'],
+        ['小标题', '"从学生角度…从老师角度…"', '点明本质（每级标题揭示一个核心发现）'],
+        ['案例对比', '"浙江历史地段改造"', '"绣花功夫：历史地段传统院落保护更新策略"'],
+    ]
+)
+
+add_heading_styled('3.5 第五步：报告结构 = 学术调研 + 两段', 2)
+add_bold_para('加在开头：实践章节')
+add_bullet('专门章节展示实践活动，内容可丰富可杂，但必须要有')
+
+add_bold_para('加在结尾：活动成效 / 落地应用案例')
+add_bullet('必须与最后一章"对策建议"相匹配、相印证')
+add_bullet('例：对策写"引入直播带货" → 落地案例写"帮村民直播，月销提升300%"')
+
+add_heading_styled('3.6 第六步：支撑材料——两年有效期铁律', 2)
+add_bold_para('七类必备支撑材料：')
+add_bullet('专利 | 软著 | 政府反馈/批示 | 媒体报道 | 高层次论文 | 推荐书 | 查重报告')
+
+add_warn('最严规则：材料有效窗口 = 2025年中 ~ 2027年中。2024年及以前的材料一律不认！')
+add_key('学生必须为第一作者。老师写第一、学生写第二 → 效果大打折扣。团中央实践处最看重"以学生为主体"。')
+
+# ======================
+# 4. TOP 10 ERRORS
+# ======================
+add_heading_styled('四、十大必死错误（自查清单）', 1)
+
+add_table(
+    ['排名', '错误', '后果'],
+    [
+        ['1', '全篇二手数据代替调研实践', '直接0分'],
+        ['2', '以活动时间线为轴写方案，调研当附属品', '本末倒置，评审一眼看穿'],
+        ['3', '交"社会实践总结"而非"调研报告"', '格式不对，没分数'],
+        ['4', '出发前没做文献查阅和目录框架', '无的放矢，回来没法补救'],
+        ['5', '流水账写法（第一天第二天第三天）', '毫无竞争力'],
+        ['6', '没提前设计落地活动和佐证材料获取路径', '回来补不了'],
+        ['7', '标题范式化（"从XX角度"类标题）', '直接低分'],
+        ['8', '选敏感选题或写出不当结论', '直接淘汰'],
+        ['9', '选烂掉旧选题不做新角度包装', '拿不到奖'],
+        ['10', '做小样本案例却不证明"典型性"', '逻辑硬伤被一票否决'],
+    ]
+)
+
+# ======================
+# 5. CASES
+# ======================
+add_heading_styled('五、两个标杆案例速览', 1)
+
+add_heading_styled('5.1 西安建筑科技大学："绣花功夫"', 2)
+add_bullet('标题用典，化用习近平语录，人文情怀拉满')
+add_bullet('策略：城市规划专业 → 扩成社会问题（加入产权归属等社会视角）')
+add_bullet('帽子：西部大开发（国家热点，有战略意义）')
+add_bullet('落地：完成8个改造项目+24个在建')
+add_bullet('启示：别用"浙江省历史地段"→没社会价值。用"西部地区"→有战略意义')
+
+add_heading_styled('5.2 交叉学科："叙事医学 × 儿童肿瘤"', 2)
+add_bullet('公式：社会问题 + 专业学科理论帽子 = 差异化选题')
+add_bullet('报告五段：缘起→现状分析→调研发现→多案例经验拼合→落地效果')
+add_bullet('技法：选3-4个案例各取最优经验点，拼成最终对策（不需要一个案例做全所有事）')
+
+# ======================
+# 6. CHECKLIST
+# ======================
+add_heading_styled('六、立即行动清单', 1)
+
+add_heading_styled('出发前（现在就做）', 2)
+add_bullet('跑目标政府/村办公室"坐40分钟"，摸清对方需求、考核、媒体资源')
+add_bullet('确定调研主题：有社会热点帽子 + 缩小到具体点位')
+add_bullet('完成文献查阅 + 列出一级/二级标题目录')
+add_bullet('预设调研结论 + 设计匹配的落地活动')
+add_bullet('制作村委会证明模板（学生名字第一 + 学校名 + 量化效果 + 盖章处）')
+add_bullet('制作媒体报道稿模板')
+add_bullet('设计调研样本（数量、构成、可获取性）')
+
+add_heading_styled('实践中', 2)
+add_bullet('所有活动拍照/视频（学生必须出镜）')
+add_bullet('现场盖章！直播时就请村委配合（不是干完回来再求人）')
+add_bullet('收集所有数据、截图、过程记录')
+
+add_heading_styled('回来后', 2)
+add_bullet('按预设框架写调研报告（不是流水账！）')
+add_bullet('前面加实践章节 + 后面加落地案例（必须匹配对策建议）')
+add_bullet('整理全部佐证材料，确保在两年有效期内')
+add_bullet('反复打磨标题（大标题抓眼球，小标题点本质）')
+
+# ======================
+# 7. GOLDEN QUOTES
+# ======================
+add_heading_styled('七、15条核心金句', 1)
+
+quotes = [
+    '"搞活动不难，搞到有效益的活动才是难。"',
+    '"真正的操作往往都是倒过来的——先预设结论再去做调研。"',
+    '"以目标为导向，而不是以形式为导向。"',
+    '"你的包装跟别人的包装差别在哪里？"',
+    '"评委90%是标题党，从大标题看到二级标题，先打基本分。"',
+    '"凡以二手数据代替调研实践的，都是0分。"',
+    '"一个东西两个基本点：实践性+学术性。"',
+    '"草船借箭也得考虑箭合不合适——人得在里面。"',
+    '"去学习强国翻半年朗读版，你就有一堆选题。"',
+    '"跑人家办公室坐40分钟就知道了。"',
+    '"案例案例，必然有一个核心点位。"',
+    '"你先有实践活动内容，然后硬凑主题——永远比不过别人。"',
+    '"如果你这两个没干（提炼核心+列目录），盲目出去搞实践，很累的。"',
+    '"不说不说能潜到深海，至少也能当无人机汇报半空中。"',
+    '"在活动现场直播的时候叫村民盖章，人家很高兴。干完了回来再找，怎么好意思？"',
+]
+
+for i, q in enumerate(quotes, 1):
+    add_bullet(f'{i}. {q}')
+
+# ======================
+# 8. ONE-LINE SUMMARY
+# ======================
+add_heading_styled('八、一句话总结', 1)
+
+p = doc.add_paragraph()
+p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p.paragraph_format.space_before = Pt(16)
+run = p.add_run('出发前倒推设计 + 现场做效益拿佐证 + 回来按框架写报告')
+run.bold = True
+run.font.size = Pt(13)
+run.font.name = '微软雅黑'
+run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+run.font.color.rgb = RGBColor(0, 102, 153)
+
+p = doc.add_paragraph()
+p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+run = p.add_run('= 社会实践获奖的完整闭环')
+run.bold = True
+run.font.size = Pt(13)
+run.font.name = '微软雅黑'
+run.element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
+
+# Save
+output_path = r'C:\Users\ASUS\OneDrive\Desktop\6.22指导培训\培训重点提炼.docx'
+doc.save(output_path)
+print(f'OK: {output_path}')
