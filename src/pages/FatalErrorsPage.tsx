@@ -59,7 +59,10 @@ export default function FatalErrorsPage() {
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <h4 className="font-medium text-sm">{err.error}</h4>
-                      <p className="text-xs text-red-600 font-medium mt-0.5">后果：{err.consequence}</p>
+                      <p className="text-xs text-red-600 font-medium mt-0.5">❌ 后果：{err.consequence}</p>
+                      {'prevention' in err && (
+                        <p className="text-xs text-green-700 mt-1.5 leading-relaxed">✅ 预防：{(err as any).prevention}</p>
+                      )}
                     </div>
                     <button
                       onClick={() => toggleConfirmation(err.rank)}

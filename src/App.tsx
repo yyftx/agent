@@ -10,6 +10,7 @@ import FatalErrorsPage from './pages/FatalErrorsPage'
 import TemplatesPage from './pages/TemplatesPage'
 import TimelinePage from './pages/TimelinePage'
 import TeamPage from './pages/TeamPage'
+import CaseStudiesPage from './pages/CaseStudiesPage'
 import LoginPage from './pages/LoginPage'
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/timeline" element={<TimelinePage />} />
         <Route path="/team" element={<TeamPage />} />
+        <Route path="/cases" element={<CaseStudiesPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

@@ -27,7 +27,10 @@
       "Read(//c/Users/ASUS/OneDrive/Desktop/**)",
       "PowerShell(py -3.13 -c \"from docx import Document; doc = Document\\(r'C:\\\\Users\\\\ASUS\\\\OneDrive\\\\Desktop\\\\6.22ָ����ѵ\\\\�������ʵ����ؽ�������.docx'\\); [print\\(p.text\\) for p in doc.paragraphs]\")",
       "PowerShell(New-Item -ItemType Directory -Force -Path \"e:\\\\agent\\\\.github\\\\workflows\")",
-      "PowerShell(try { $response = Invoke-WebRequest -Uri \"https://yyftx.github.io/agent/\" -UseBasicParsing -TimeoutSec 15; \"Status: $\\($response.StatusCode\\)\"; \"Size: $\\($response.Content.Length\\)\" } catch { \"Error: $_\" })"
+      "PowerShell(try { $response = Invoke-WebRequest -Uri \"https://yyftx.github.io/agent/\" -UseBasicParsing -TimeoutSec 15; \"Status: $\\($response.StatusCode\\)\"; \"Size: $\\($response.Content.Length\\)\" } catch { \"Error: $_\" })",
+      "WebSearch",
+      "WebFetch(domain:www.why.com.cn)",
+      "WebFetch(domain:youth.cau.edu.cn)"
     ],
     "additionalDirectories": [
       "C:\\Users\\ASUS\\AppData\\Roaming\\npm\\node_modules\\code-server\\node_modules\\argon2"

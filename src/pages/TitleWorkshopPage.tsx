@@ -52,10 +52,14 @@ const directionOptions = [
 ]
 
 const goodExamples = [
-  '绣花功夫：历史地段传统院落保护更新策略研究',
-  '叙事医学视域下儿童肿瘤患者生命质量提升路径调研',
-  '韧性治理视角下浙北农村电商物流网络适应性研究——以安吉县3个淘宝村为例',
-  '共同富裕背景下山区县生态产品价值实现路径研究',
+  { title: '禾下她名，地载公平：新时代农村妇女土地权益保护的挑战与应对', note: '国赛特等奖 · 用典（诗经）+女性视角' },
+  { title: '古村蝶变：传统村落活化利用的路径创新研究', note: '国赛特等奖 · "蝶变"意象生动' },
+  { title: '一张蓝图何以绘到底：基层探索乡村振兴长效机制的实践与分析', note: '国赛特等奖 · 设问式+政策引用' },
+  { title: '同心共济，生命续航："三献"工作高捐献率的路径探索', note: '国赛特等奖 · 对仗+成语' },
+  { title: '渔见新生：长江退捕渔民可持续生计现实困境及优化路径', note: '国赛二等奖 · 谐音双关"遇见→渔见"' },
+  { title: '一骑当先："新就业形态"背景下网约配送员职业发展困境研究', note: '国赛二等奖 · 用典+新群体' },
+  { title: '戏台新绎，人气共生：古戏台建筑遗产活化保护与价值回归研究', note: '国赛二等奖 · 对仗+诗意' },
+  { title: '绣花功夫：历史地段传统院落保护更新策略研究', note: '国赛特等奖 · 引用最高领导人语录' },
 ]
 
 const badExamples = [
@@ -81,9 +85,9 @@ export default function TitleWorkshopPage() {
     }
   }
 
-  const useExample = (title: string) => {
+  const useExample = (item: { title: string; note: string }) => {
     setVersionHistory((prev) => ([draftTitle, ...prev].filter(Boolean).slice(0, 10)))
-    setDraftTitle(title)
+    setDraftTitle(item.title)
   }
 
   return (
@@ -200,12 +204,13 @@ export default function TitleWorkshopPage() {
         {/* Examples */}
         <div className="grid gap-4 md:grid-cols-2">
           <div className="rounded-lg bg-green-50 border border-green-200 p-4">
-            <h4 className="text-sm font-medium text-green-700 mb-2">✅ 好标题示范</h4>
-            <ul className="space-y-1.5">
+            <h4 className="text-sm font-medium text-green-700 mb-2">✅ 获奖标题示范（点一下试试）</h4>
+            <ul className="space-y-2">
               {goodExamples.map((ex) => (
-                <li key={ex}>
-                  <button onClick={() => useExample(ex)} className="text-xs text-green-800 hover:underline text-left">
-                    {ex}
+                <li key={ex.title}>
+                  <button onClick={() => useExample(ex)} className="text-xs text-left hover:opacity-70 transition-opacity">
+                    <span className="text-green-800 font-medium">{ex.title}</span>
+                    <span className="block text-green-600/60 mt-0.5">{ex.note}</span>
                   </button>
                 </li>
               ))}

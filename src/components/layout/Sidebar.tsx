@@ -10,6 +10,7 @@ import {
   Calendar,
   Users,
   Brain,
+  Trophy,
 } from 'lucide-react'
 
 const navItems = [
@@ -23,6 +24,7 @@ const navItems = [
   { to: '/timeline', icon: Calendar, label: '时间线' },
   { to: '/templates', icon: FileText, label: '模板中心' },
   { to: '/team', icon: Users, label: '团队管理' },
+  { to: '/cases', icon: Trophy, label: '获奖案例库' },
 ]
 
 export default function Sidebar() {

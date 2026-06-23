@@ -13,6 +13,7 @@ import {
   Lightbulb,
   Target,
   Trophy,
+  Award,
 } from 'lucide-react'
 
 const quickActions = [
@@ -21,7 +22,7 @@ const quickActions = [
   { to: '/checklist', icon: CheckSquare, label: '行动清单', desc: '跟踪出发前/中/后任务', color: 'text-green-600 bg-green-50' },
   { to: '/title-workshop', icon: PenLine, label: '打磨标题', desc: '用黄金法则校验标题', color: 'text-orange-600 bg-orange-50' },
   { to: '/errors', icon: AlertTriangle, label: '十大错误自查', desc: '对照致命错误清单', color: 'text-red-600 bg-red-50' },
-  { to: '/templates', icon: FileText, label: '生成模板', desc: '下载对接函等文档', color: 'text-teal-600 bg-teal-50' },
+  { to: '/cases', icon: Trophy, label: '获奖案例库', desc: '参考国赛特等奖作品', color: 'text-amber-600 bg-amber-50' },
 ]
 
 const goldenQuotes = [
@@ -111,6 +112,49 @@ export default function DashboardPage() {
             "出发前倒推设计 + 现场做效益拿佐证 + 回来按框架写报告 = 社会实践获奖的完整闭环"
           </p>
         </div>
+      </div>
+
+      {/* Case study spotlight */}
+      <div>
+        <h2 className="mb-4 text-lg font-semibold flex items-center gap-2">
+          <Award className="h-5 w-5" />
+          获奖案例速览
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              title: '一张蓝图何以绘到底',
+              uni: '上海大学',
+              award: '国赛特等奖',
+              highlight: '与村民同吃同住，为4任村支书写人物小传，提炼"沟通协商凝聚共识"等三大普适原则',
+            },
+            {
+              title: '禾下她名，地载公平',
+              uni: '烟台大学',
+              award: '国赛特等奖',
+              highlight: '9省76村、2396份问卷、740份司法案例——提出"五步全链条治理流程"',
+            },
+            {
+              title: '古村蝶变',
+              uni: '山东城建学院',
+              award: '国赛特等奖',
+              highlight: '连续3年驻村超3个月——高职院校首次获哲学社会科学类特等奖',
+            },
+          ].map((c) => (
+            <div key={c.title} className="rounded-xl border bg-card p-4 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-xs text-amber-600 font-medium mb-1">{c.award}</div>
+              <h3 className="font-semibold text-sm mb-1">{c.title}</h3>
+              <p className="text-xs text-muted-foreground mb-2">{c.uni}</p>
+              <p className="text-xs leading-relaxed text-muted-foreground">{c.highlight}</p>
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={() => navigate('/cases')}
+          className="mt-4 w-full rounded-lg border border-dashed py-3 text-sm text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
+        >
+          查看全部获奖案例 →
+        </button>
       </div>
     </div>
   )
