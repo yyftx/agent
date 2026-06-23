@@ -11,6 +11,10 @@ import TemplatesPage from './pages/TemplatesPage'
 import TimelinePage from './pages/TimelinePage'
 import TeamPage from './pages/TeamPage'
 import CaseStudiesPage from './pages/CaseStudiesPage'
+import TopicSelectionPage from './pages/TopicSelectionPage'
+import ResearchMethodsPage from './pages/ResearchMethodsPage'
+import ReportWritingPage from './pages/ReportWritingPage'
+import DefensePrepPage from './pages/DefensePrepPage'
 import LoginPage from './pages/LoginPage'
 
 export default function App() {
@@ -29,6 +33,10 @@ export default function App() {
         <Route path="/timeline" element={<TimelinePage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/cases" element={<CaseStudiesPage />} />
+        <Route path="/topic-selection" element={<TopicSelectionPage />} />
+        <Route path="/research-methods" element={<ResearchMethodsPage />} />
+        <Route path="/report-writing" element={<ReportWritingPage />} />
+        <Route path="/defense" element={<DefensePrepPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
